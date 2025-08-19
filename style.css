@@ -1,0 +1,266 @@
+body {
+  font-family: inter;
+}
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 200vh;
+  align-items: center;
+}
+
+.logo {
+  color: white;
+  height: 100px;
+  width: 100px;
+  border-radius: 20px;
+  background-color: black;
+  font-size: xx-large;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 25px;
+}
+.title {
+  color: black;
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+}
+.subtitle {
+  color: gray;
+  font-size: medium;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.input {
+  padding: 15px;
+  background-color: rgb(240, 237, 237);
+  border: none;
+  border-radius: 5px;
+  width: 500px;
+  margin-bottom: 15px;
+}
+
+.submit {
+  width: 530px;
+  background-color: black;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  size: 14px;
+  font-weight: bold;
+}
+.submit:hover {
+  background-color: darkgray;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #e5e7eb; /* Light gray line */
+}
+
+.divider:not(:empty)::before {
+  margin-right: 12px;
+}
+
+.divider:not(:empty)::after {
+  margin-left: 12px; /* Matches your Figma spacing */
+}
+.label {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+.link {
+  color: gray;
+  text-decoration: none;
+}
+.accounts {
+  display: flex;
+  width: 530px;
+  font-size: large;
+  text-align: left;
+  align-items: center;
+  height: 75px;
+  background-color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+img.logo {
+  background-color: transparent;
+  height: 30px;
+  width: 30px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+img {
+  height: 30px;
+  margin-top: 20px;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.highlight {
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.mail {
+  position: relative;
+}
+.camera {
+  width: 100px;
+  height: 100px;
+  border-radius: 70px;
+  padding: 010px;
+  border: 1px;
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.camera-icon {
+  position: absolute;
+  top: 70px;
+  left: 70px;
+  background-color: white;
+  border-radius: 50%;
+  padding: 5px;
+}
+.parent-scroll {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.scroll-indicator {
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  margin-top: 20px;
+  margin-left: 4px;
+}
+.scroll-indicator:hover {
+  background-color: darkgray;
+  transform: scale(1.2);
+  cursor: pointer;
+}
+.scroll-indicator:active {
+  background-color: gray;
+  transform: scale(1);
+}
+.shield {
+  background-color: lightgrey;
+  padding: 20px;
+  padding-left: 50px;
+  width: 300px;
+  border-radius: 10px;
+  position: relative;
+}
+.shield-icon {
+  position: absolute;
+  left: 10px;
+  top: 5px;
+}
+.web-sign {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow-y: hidden;
+}
+.description_app {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  color: gray;
+  margin-top: 5px;
+}
+#time-zone-select {
+  background-color: #b9b9bb;
+  color: black;
+  width: 250px;
+  padding: 0.4em;
+  border-radius: 7px;
+  border: none;
+}
+.time-zone-title {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+}
+.time-zone-title img {
+  position: relative;
+  top: -8px;
+}
+.working-hours {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: -35px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+.working-hours img {
+  position: relative;
+  top: -8px;
+}
+
+.working-hours-manager {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  width: 700px;
+}
+.working-hours-select{
+    border: 1px solid #e5e7eb;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+}

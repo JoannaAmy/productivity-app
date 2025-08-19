@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SyncFlow</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="toggle.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="head">
+        <div class="logo">SF</div>
+        <div class="title">Connect Your Digital Life</div>
+        <div class="subtitle">
+          <p>
+            Define your working hours so we know when you're available <br />
+            for meetings
+          </p>
+        </div>
+      </div>
+      <div class="time-zone">
+        <div class="time-zone-title">
+          <img src="/images/globe-alt-svgrepo-com.svg" alt="" /> TimeZone
+        </div>
+
+        <div class="time-zone-select">
+          <select name="time-zone" id="time-zone-select">
+            <option value="GMT">GMT</option>
+            <option value="EST">EST</option>
+            <option value="PST">PST</option>
+            <option value="CET">CET</option>
+            <!-- Add more time zones as needed -->
+          </select>
+        </div>
+      </div>
+      <div class="working-hours">
+        <img src="/images/clock-two-svgrepo-com.svg" alt="" /> Working Hours
+      </div>
+      <div class="working-hours-select">
+        <div class="working-hours-manager">
+          <div class="working-hours-title">
+            <div class="toggle-container">
+              <div class="toggle-switch">
+                <input type="checkbox" id="toggle" />
+                <label for="toggle" class="toggle-button"></label>
+              </div>
+            </div>
+          </div>
+
+          Monday &nbsp;
+          <div class="working-hours-option">
+            <label for="start-time">Start Time:</label>
+            <input type="time" id="start-time" name="start-time" />
+          </div>
+
+          <div class="working-hours-option">
+            <label for="end-time">End Time:</label>
+            <input type="time" id="end-time" name="end-time" />
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="working-hours-select">
+        <div class="working-hours-manager">
+          <div class="working-hours-title">
+            <div class="toggle-container">
+              <div class="toggle-switch">
+                <input type="checkbox" id="toggle" />
+                <label for="toggle" class="toggle-button"></label>
+              </div>
+            </div>
+          </div>
+
+          Tuesday &nbsp;
+          <div class="working-hours-option">
+            <label for="start-time">Start Time:</label>
+            <input type="time" id="start-time" name="start-time" />
+          </div>
+
+          <div class="working-hours-option">
+            <label for="end-time">End Time:</label>
+            <input type="time" id="end-time" name="end-time" />
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="working-hours-select">
+        <div class="working-hours-manager">
+          <div class="working-hours-title">
+            <div class="toggle-container">
+              <div class="toggle-switch">
+                <input type="checkbox" id="toggle" />
+                <label for="toggle" class="toggle-button"></label>
+              </div>
+            </div>
+          </div>
+
+          Wednesday &nbsp;
+          <div class="working-hours-option">
+            <label for="start-time">Start Time:</label>
+            <input type="time" id="start-time" name="start-time" />
+          </div>
+
+          <div class="working-hours-option">
+            <label for="end-time">End Time:</label>
+            <input type="time" id="end-time" name="end-time" />
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="working-hours-select">
+        <div class="working-hours-manager">
+          <div class="working-hours-title">
+            <div class="toggle-container">
+              <div class="toggle-switch">
+                <input type="checkbox" id="toggle" />
+                <label for="toggle" class="toggle-button"></label>
+              </div>
+            </div>
+          </div>
+
+          Thursday &nbsp;
+          <div class="working-hours-option">
+            <label for="start-time">Start Time:</label>
+            <input type="time" id="start-time" name="start-time" />
+          </div>
+
+          <div class="working-hours-option">
+            <label for="end-time">End Time:</label>
+            <input type="time" id="end-time" name="end-time" />
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="working-hours-select">
+        <div class="working-hours-manager">
+          <div class="working-hours-title">
+            <div class="toggle-container">
+              <div class="toggle-switch">
+                <input type="checkbox" id="toggle" />
+                <label for="toggle" class="toggle-button"></label>
+              </div>
+            </div>
+          </div>
+
+          Friday &nbsp;
+          <div class="working-hours-option">
+            <label for="start-time">Start Time:</label>
+            <input type="time" id="start-time" name="start-time" />
+          </div>
+
+          <div class="working-hours-option">
+            <label for="end-time">End Time:</label>
+            <input type="time" id="end-time" name="end-time" />
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="working-hours-select">
+        <div class="working-hours-manager">
+          <div class="working-hours-title">
+            <div class="toggle-container">
+              <div class="toggle-switch">
+                <input type="checkbox" id="toggle" />
+                <label for="toggle" class="toggle-button"></label>
+              </div>
+            </div>
+          </div>
+
+          Saturday &nbsp;
+          <div class="working-hours-option"></div>
+
+          <div class="working-hours-option">off</div>
+        </div>
+      </div>
+      <br />
+      <div class="working-hours-select">
+        <div class="working-hours-manager">
+          <div class="working-hours-title">
+            <div class="toggle-container">
+              <div class="toggle-switch">
+                <input type="checkbox" id="toggle" />
+                <label for="toggle" class="toggle-button"></label>
+              </div>
+            </div>
+          </div>
+
+          Sunday &nbsp;
+          <div class="working-hours-option"></div>
+
+          <div class="working-hours-option">off</div>
+        </div>
+      </div>
+        <br />
+        <button class="submit" type="submit">Continue</button>
+      
+        <section class="scroll-bar">
+            <div class="parent-scroll">
+            <a href="welcom-page.html"><div class="scroll-indicator"></div></a>
+            <a href="welcome-pg-2.html"><div class="scroll-indicator"></div></a>
+            <a href="welcome-pg-3.html"><div class="scroll-indicator" ></div></a>
+            <a href="welcome-pg-4.html"><div class="scroll-indicator" style="background-color: lightgray;"></div></a>
+            </div>
+            <br>
+            <span class="subtitle"><p>step 3 of 4</p></span>
+        </section>
+    </div>
+  </body>
+</html>
