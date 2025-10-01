@@ -4,13 +4,8 @@ import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 import Link from 'next/link';
 import '../public/assets/styles/CalendarHeader.css';
-import filter from './icons/bars-filter.png';
-import angleDown from './icons/filter-arrow-down.png';
-import exportIcon from './icons/export.png';
-import calendarIcon from './icons/calendar.png';
-import settingsIcon from './icons/settings.png'
-import clockIcon from './icons/clock2.png'
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 // import { useNavigate } from 'react-router-dom';
 
 function CalendarHeader({ onCreateEvent }) {
@@ -123,12 +118,12 @@ function CalendarHeader({ onCreateEvent }) {
           <div className="bottomright">
             <div className="customize-btns">
               <button className="export">
-                <img src={exportIcon} alt="" /> Export
+                <Image src='/icons/export.png' alt="" width={20} height={20}/> Export
               </button>
               <button className="filter">
-                <img src={filter} alt="" />
+                <Image src='/icons/bars-filter.png' alt="" width={20} height={20} />
                 Filter
-                <img className="angledown" src={angleDown} alt="" />
+                <Image className="angledown" src='/icons/filter-arrow-down.png' alt="" width={20} height={20} />
               </button>
             </div>
           </div>
@@ -160,15 +155,15 @@ function CalendarHeader({ onCreateEvent }) {
                 {showMeetingDropdown && (
                   <div className="dropdown-options">
                     <div onClick={() => { setMeetingType('45 mins Consultation'); setShowMeetingDropdown(false); }}>
-                      <img src={clockIcon} alt="" className="icon" />
+                      <Image src='/icons/clock2.png' alt="" className="icon" width={20} height={20} />
                       45 mins Consultation
                     </div>
                     <div onClick={() => { setMeetingType('1 hour Deep Dive'); setShowMeetingDropdown(false); }}>
-                      <img src={clockIcon} alt="" className="icon" />
+                      <Image src='/icons/clock2.png' alt="" className="icon" width={20} height={20} />
                       1 hour Deep Dive
                     </div>
                     <div onClick={() => { setMeetingType('15 mins Quick Chat'); setShowMeetingDropdown(false); }}>
-                      <img src={clockIcon} alt="" className="icon" />
+                      <Image src='/icons/clock2.png' alt="" className="icon" width={20} height={20} />
                       15 mins Quick Chat
                     </div>
                   </div>
@@ -233,7 +228,7 @@ function CalendarHeader({ onCreateEvent }) {
         <div className="modal-overlay">
           <div className="modal-content">
             <div className="modal-heading">
-              <h2> <img src={calendarIcon} alt="" className="icon" />Create Event</h2>
+              <h2> <Image src='/icons/calendar.png' alt="" className="icon" width={20} height={20} />Create Event</h2>
               <button onClick={() => setActiveModal(null)}>╳</button>
             </div>
             <div className="form">
@@ -255,15 +250,15 @@ function CalendarHeader({ onCreateEvent }) {
                 {showMeetingDropdown && (
                   <div className="dropdown-options">
                     <div onClick={() => { setMeetingType('45 mins Consultation'); setShowMeetingDropdown(false); }}>
-                      <img src={clockIcon} alt="" className="icon" />
+                      <Image src='/icons/clock2.png' alt="" className="icon" width={20} height={20} />
                       45 mins Consultation
                     </div>
                     <div onClick={() => { setMeetingType('1 hour Deep Dive'); setShowMeetingDropdown(false); }}>
-                      <img src={clockIcon} alt="" className="icon" />
+                      <Image src='/public/icons/clock2.png' alt="" className="icon" width={20} height={20} />
                       1 hour Deep Dive
                     </div>
                     <div onClick={() => { setMeetingType('15 mins Quick Chat'); setShowMeetingDropdown(false); }}>
-                      <img src={clockIcon} alt="" className="icon" />
+                      <Image src='/icons/clock2.png' alt="" className="icon" width={20} height={20} />
                       15 mins Quick Chat
                     </div>
                   </div>
@@ -318,7 +313,7 @@ function CalendarHeader({ onCreateEvent }) {
               <textarea name="" id="notes" placeholder='Add meeting agenda, preparation notes or special requirements...'></textarea>
             </div>
             <div className="confirmation">
-              <img className='icon' src={settingsIcon} alt="" />
+              <Image className='icon' src={settingsIcon} alt="" width={20} height={20} />
               <span>
                 <h4>Auto-confirmation</h4>
                 <p>

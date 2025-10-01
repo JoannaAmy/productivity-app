@@ -2,9 +2,6 @@
 
 import React, { useState } from 'react';
 import '../../../calendar/Calendar.css';
-import globeIcon from '../../icons/globe.png';
-import clockIcon from '../../icons/clock2.png';
-import copyIcon from '../../icons/copy.png';
 import TimeSelect from '../../components/TimeSelect';
 import ToggleSelect from '../../components/ToggleSelect';
 import TimezoneSelect from '../../components/TimezoneSelect';
@@ -26,13 +23,13 @@ function Availability() {
       <div className="availability">
         <h2>Working hours</h2>
         <span>
-          <img src={globeIcon} alt="" />
+          <img src='/icons/globe.png' alt="" />
           Timezone
         </span>
         <TimezoneSelect />
 
         <h4>
-          <img src={clockIcon} alt="" />
+          <img src='/icons/clock2.png' alt="" />
           Weekly availability
         </h4>
 
@@ -62,7 +59,7 @@ function Availability() {
                   <>
                     <button>x</button>
                     <button>＋</button>
-                    <button><img src={copyIcon} alt="" /></button>
+                    <button><img src='/icons/copy.png' alt="" /></button>
                   </>
                 ) : (
                   <button>＋</button>

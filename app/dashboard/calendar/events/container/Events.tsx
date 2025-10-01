@@ -1,17 +1,11 @@
 import React from 'react';
-import '../../Calendar.css'
-import noEvents from '../../no-events.png';
-import calendarIcon from '../../icons/calendar.png';
-import peopleIcon from '../../icons/people.png';
-import clockIcon from '../../icons/clock.png';
-import clockIcon2 from '../../icons/clock2.png';
-import trashIcon from '../../icons/trash.png';
-import linkIcon from '../../icons/link.png';
+import Image from 'next/image';
+import '../../Calendar.css';
 
 function Events({ events, onDeleteEvent }) {
   const getWeekDates = () => {
     const today = new Date();
-    const dayOfWeek = today.getDay(); // 0 = Sunday, 6 = Saturday
+    const dayOfWeek = today.getDay();
     const startOfWeek = new Date(today);
     startOfWeek.setDate(today.getDate() - dayOfWeek);
 
@@ -23,21 +17,18 @@ function Events({ events, onDeleteEvent }) {
     }
     return week;
   };
+
   return (
     <div className="events">
       <div className="dates-panel">
         <h5>
-          <img src={calendarIcon} alt="" />
+          <Image src="/icons/calendar.png" alt="" width={20} height={20} />
           This week
         </h5>
         <div className="dates-container">
           {getWeekDates().map((date, index) => {
-            const isToday =
-              date.toDateString() === new Date().toDateString();
-
-            const dayName = date.toLocaleDateString('en-US', {
-              weekday: 'short',
-            });
+            const isToday = date.toDateString() === new Date().toDateString();
+            const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
             const dayNumber = date.getDate();
 
             const className = isToday
@@ -49,15 +40,16 @@ function Events({ events, onDeleteEvent }) {
             return (
               <div className={className} key={index}>
                 {dayName} <span>{dayNumber}</span>
-                {isToday && <img src={clockIcon} alt="" />}
+                {isToday && <Image src="/icons/clock.png" alt="" width={16} height={16} />}
               </div>
             );
           })}
         </div>
       </div>
+
       <div className="upcoming-events">
         <h5>
-          <img src={calendarIcon} alt="" />
+          <Image src="/icons/calendar.png" alt="" width={20} height={20} />
           Upcoming Events
         </h5>
         <div className="events-container">
@@ -70,37 +62,38 @@ function Events({ events, onDeleteEvent }) {
                   <span className="duration">{event.duration}</span>
                   <div className="tags">
                     <span className="tag">
-                      <img src={calendarIcon} alt="" />
+                      <Image src="/icons/calendar.png" alt="" width={16} height={16} />
                       {event.date}
                     </span>
                     <span className="tag">
-                      <img src={clockIcon2} alt="" />
+                      <Image src="/icons/clock2.png" alt="" width={16} height={16} />
                       {event.time}
                     </span>
                     <span className="tag people">
-                      <img src={peopleIcon} alt="" />
+                      <Image src="/icons/people.png" alt="" width={16} height={16} />
                       {event.guests.join(', ')}
                     </span>
                   </div>
                 </div>
                 <div className="actions">
                   <button className="copy-link">
-                    <img src={linkIcon} alt="" />
+                    <Image src="/icons/link.png" alt="" width={16} height={16} />
                     Copy Link
                   </button>
                   <button
                     className="delete"
                     onClick={() => onDeleteEvent(index)}
                   >
-                    <img src={trashIcon} alt="" />
+                    <Image src="/icons/trash.png" alt="Delete" width={16} height={16} />
                   </button>
                 </div>
               </div>
             ))
           ) : ( */}
             <div className="no-events">
-              <img src={'../../icons/arrow-down-filled.png'} alt="" 
-              // style={{ width :'14rem', height: '14rem'}}
+              <img
+                src="/icons/no-events.png"
+                alt=""
               />
               <p>No events scheduled</p>
             </div>
