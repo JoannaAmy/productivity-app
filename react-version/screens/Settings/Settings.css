@@ -1,0 +1,104 @@
+
+
+.settings-page .settings-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+hr {
+    border: 1px solid #EBEAEC;
+    margin: 20px 0;
+}
+
+.settings-head .info {
+    display: flex;
+    align-items: center;
+}
+
+.settings-head .info .profile-img {
+    background-color: #7A7289;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.settings-head .info .profile-img span {
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+}
+
+.settings-head .info .profile-info {
+    font-size: 14px;
+}
+
+.settings-head .info .profile-info span {
+    color: #78767D;
+}
+
+.settings-page .primary-btn {
+    background-color: #7F67BE;
+    color: #fff;
+    border-radius: 15px;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.settings-page .input-box {
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+}
+
+.settings-page .input-box label {
+    font-size: .75rem;
+}
+
+.settings-page .input-box input {
+    width: 90%;
+    background-color: #F2F0F9;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.notif-settings h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.notif-settings .notif-setting {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.notif-settings .notif-setting .setting-desc h5{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.notif-settings .notif-setting .setting-desc p {
+    font-size: 14px;
+    color: #78767D;
+}
+
+.close-btns {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.settings-page .sec-btn {
+    border: .0625rem solid;
+    border-radius: .9375rem;
+    padding: .3125rem .625rem;
+    margin-right: .625rem;
+}
