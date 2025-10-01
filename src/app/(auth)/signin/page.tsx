@@ -5,12 +5,13 @@ import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaSpinner } from "react-icons/fa";
+import "./signin.css";
 
 export default function Page() {
   const [googleLoading, setGoogleLoading] = useState(false);
 
   return (
-    <div className="container">
+    <div className="container sigin-in-container-890">
       <div className="head">
         <div className="logo">SF</div>
         <div className="title">SyncFlow</div>

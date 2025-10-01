@@ -1,55 +1,72 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
 }
+
+//  --- Before setting up database URls
+// 1. add this [?pgbouncer=true"] athe the end of your database URL
+
+// --- After mmaking changes to your schema.prisma file -- [stop development server first]
+// 1. npx prisma migrate dev --name edited_user 
+// 2. npx prisma generate
+
+// --- After setting up database URls
+// 1. npx prisma migrate dev --name init
+// 2. npx prisma generate
+// after this set up prisma client
 
 model User {
-  id                String    @id @default(cuid())
-  name              String
-  email             String   @unique
-  image             String?
-  // accounts          Account[]
-  // sessions          Session[]
-  calendarConnected Boolean   @default(false)
-  updatedAt         DateTime  @updatedAt
-  createdAt         DateTime  @default(now())
+    id            String          @id @default(cuid())
+    name          String?
+    email         String          @unique
+    emailVerified DateTime?
+    image         String?
+    accounts      Account[]
+    sessions      Session[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 }
 
-// model Account {
-//   id                String  @id @default(cuid())
-//   userId            String
-//   type              String
-//   provider          String
-//   providerAccountId String
-//   refresh_token     String?
-//   access_token      String?
-//   expires_at        Int?
-//   token_type        String?
-//   scope             String?
-//   id_token          String?
-//   session_state     String?
+model Account {
+    userId            String
+    type              String
+    provider          String
+    providerAccountId String
+    refresh_token     String?
+    access_token      String?
+    expires_at        Int?
+    token_type        String?
+    scope             String?
+    id_token          String?
+    session_state     String?
 
-//   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-//   @@unique([provider, providerAccountId])
-// }
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-// model Session {
-//   id           String   @id @default(cuid())
-//   sessionToken String   @unique
-//   userId       String
-//   expires      DateTime
-//   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-// }
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-// model VerificationToken {
-//   identifier String
-//   token      String   @unique
-//   expires    DateTime
-//   @@unique([identifier, token])
-// }
+    @@id([provider, providerAccountId])
+}
+
+model Session {
+    sessionToken String   @unique
+    userId       String
+    expires      DateTime
+    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model VerificationToken {
+    identifier String
+    token      String
+    expires    DateTime
+
+    @@id([identifier, token])
+}
