@@ -1,9 +1,8 @@
 "use client"
 
 import React, { useState } from 'react';
-import linkIcon from '../../icons/link.png';
-import copyIcon from '../../icons/copy.png';
 import '../../../calendar/Calendar.css';
+import Image from 'next/image';
 
 function BookingLists() {
   const [showRight1, setShowRight1] = useState(false);
@@ -71,7 +70,7 @@ function BookingLists() {
                 <div className="right">
                   <span>https://todoapp.com/book/45min</span>
                   <button onClick={() => handleCopy('https://todoapp.com/book/45min', setCopied1)}>
-                    <img src={copyIcon} alt="" /> {copied1 ? 'Copied!' : 'Copy Link'}
+                    <img src='/icons/copy.png' alt="" /> {copied1 ? 'Copied!' : 'Copy Link'}
                   </button>
                 </div>
               )}
@@ -122,7 +121,7 @@ function BookingLists() {
                 <div className="right">
                   <span>https://todoapp.com/book/1hour</span>
                   <button onClick={() => handleCopy('https://todoapp.com/book/1hour', setCopied2)}>
-                    <img src={copyIcon} alt="" /> {copied2 ? 'Copied!' : 'Copy Link'}
+                    <img src='/icons/copy.png' alt="" /> {copied2 ? 'Copied!' : 'Copy Link'}
                   </button>
                 </div>
               )}
@@ -173,7 +172,7 @@ function BookingLists() {
                 <div className="right">
                   <span>https://todoapp.com/book/15min</span>
                   <button onClick={() => handleCopy('https://todoapp.com/book/15min', setCopied3)}>
-                    <img src={copyIcon} alt="" /> {copied3 ? 'Copied!' : 'Copy Link'}
+                    <img src='/icons/copy.png' alt="" /> {copied3 ? 'Copied!' : 'Copy Link'}
                   </button>
                 </div>
               )}
@@ -186,7 +185,7 @@ function BookingLists() {
           <div className="i-s-card">
             <h4>Google Calendar Integration</h4>
             <button>
-              <img src={linkIcon} alt="" />
+              <img src='/icons/link.png' alt="" />
               Connected Google Calendar
             </button>
             <span>Sync events with your Google Calendar</span>

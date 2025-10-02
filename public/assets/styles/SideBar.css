@@ -122,6 +122,11 @@ button {
     color: var(--primary100);
 }
 
+.sidebar button {
+    display: flex;
+    align-items: center;
+}
+
 h1 {
     font-weight: 700;
     font-size: 24px;

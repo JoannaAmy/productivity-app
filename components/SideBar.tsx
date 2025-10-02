@@ -1,12 +1,7 @@
 "use client"
 
 
-import '../public/assets/styles/SideBar.css';
-import calendarIcon from './icons/calendar-gray.png';
-import tasksIcon from './icons/tasks.png';
-import reminderIcon from './icons/reminder.png';
-import settingsIcons from './icons/settings.png';
-import logoutIcon from './icons/logout.png';
+import '../public/assets/styles/SideBar.css';;
 import caretDown from './icons/arrow-down-filled.png';
 import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
@@ -55,7 +50,7 @@ function SideBar() {
             className={`sidebar-option-btn ${pathname.startsWith('/calendar') ? 'selected-btn' : ''}`}
             onClick={() => router.push('/calendar/events')}
           >
-            <img src={calendarIcon} alt="" />
+            <img src='/icons/calendar.png' alt="" />
             Calendar
           </button>
 
@@ -63,7 +58,7 @@ function SideBar() {
             className={`sidebar-option-btn ${pathname.startsWith('/task') ? 'selected-btn' : ''}`}
             onClick={() => router.push('/task/all')}
           >
-            <img src={tasksIcon} alt="" />
+            <img src='/icons/tasks.png' alt="" />
             Task
           </button>
 
@@ -71,7 +66,7 @@ function SideBar() {
             className={`sidebar-option-btn ${pathname.startsWith('/reminder') ? 'selected-btn' : ''}`}
             onClick={() => router.push('/reminder/all')}
           >
-            <img src={reminderIcon} alt="" />
+            <img src='/icons/reminder.png' alt="" />
             Reminder
           </button> */}
 
@@ -85,12 +80,14 @@ function SideBar() {
       </div>
       <div className="bottom-sidebar">
         <div className="bottom-options">
+          <button onClick={() => router.push('/settings')}>
+            <img src='/icons/settings.png' alt="" />
           <Link href={"/dashboard/settings"}>
             <img src={settingsIcons} alt="" />
             Settings
           </Link>
           <button onClick={() => router.push('/')}>
-            <img src={logoutIcon} alt="" />
+            <img src='/icons/logout.png' alt="" />
             Log Out
           </button>
           
