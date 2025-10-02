@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import AppModals from "@/components/AppModals/AppModals";
 
+// Geist fonts
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -12,6 +15,16 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+// Open Sans
+const openSans = Open_Sans({
+  variable: "--font-open-sans",
+  subsets: ["latin"],
+  weight: ["300", "400", "600", "700", "800"],
+});
+
+// Product Sans is not available via next/font/google.
+// You must self-host it or use a CDN (see note below).
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,11 +39,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${openSans.variable} antialiased`}
       >
         <ClerkProvider>
           {children}
         </ClerkProvider>
+        <AppModals />
       </body>
     </html>
   );

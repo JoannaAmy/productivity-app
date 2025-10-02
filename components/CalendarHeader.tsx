@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import '../public/assets/styles/CalendarHeader.css';
 import { usePathname } from 'next/navigation';
+import '../public/assets/styles/Modal.css';
 import Image from 'next/image';
 // import { useNavigate } from 'react-router-dom';
 
@@ -313,7 +314,7 @@ function CalendarHeader({ onCreateEvent }) {
               <textarea name="" id="notes" placeholder='Add meeting agenda, preparation notes or special requirements...'></textarea>
             </div>
             <div className="confirmation">
-              <Image className='icon' src="/icons/settingsIcon" alt="" width={20} height={20} />
+              <Image className='icon' src="/icons/settings.png" alt="" width={20} height={20} />
               <span>
                 <h4>Auto-confirmation</h4>
                 <p>

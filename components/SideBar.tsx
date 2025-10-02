@@ -13,18 +13,23 @@ function SideBar() {
   const router = useRouter()
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const openCreateEventModal = () => {
+    router.push('?modal=create-events');
+  };
+
+
   const handleCreateClick = () => {
     setShowDropdown(prev => !prev);
   };
 
-  const handleOptionClick = (path) => {
-    router.push(path);
-    setShowDropdown(false);
-  };
+  const handleOptionClick = (modalType: string) => {
+  router.push(`?modal=${modalType}`);
+};
+
 
   const links = [
-    { href: `tasks/all`, title: 'Tasks', src: "/icons/tasks.png"},
     { href: `calendar/events`, title: 'Calendar', src: "/icons/calendar.png" },
+    { href: `tasks/all`, title: 'Tasks', src: "/icons/tasks.png"},
     { href: `reminders/all`, title: 'Reminders', src: "/icons/reminder.png" }
   ]
 
@@ -38,10 +43,10 @@ function SideBar() {
         <div className="create-wrapper">
           <button className="create-btn" onClick={handleCreateClick}>+ Create</button>
           {showDropdown && (
-            <div className="create-dropdown">
-              <button onClick={() => handleOptionClick('/task/all')}>Add Task</button>
-              <button onClick={() => handleOptionClick('/reminder/all')}>Add Reminder</button>
-              <button onClick={() => handleOptionClick('/calendar/event')}>Add Event</button>
+            <div className="create-dropdown-sidebar">
+              <button onClick={() => handleOptionClick('create-task')}>Add Task</button>
+              <button onClick={() => handleOptionClick('create-reminder')}>Add Reminder</button>
+              <button onClick={() => handleOptionClick('create-events')}>Add Event</button>
             </div>
           )}
         </div>
@@ -70,9 +75,10 @@ function SideBar() {
             Reminder
           </button> */}
 
-          {links.map(({ href, title }) => {
+          {links.map(({ href, title, src }) => {
             return <Link key={href} href={`/dashboard/${href}`}
               className={`sidebar-option-btn ${pathname.includes(href) ? 'selected-btn' : ''}`}>
+              <img src={src} alt="" />
               {title}
             </Link>
           })}
@@ -82,12 +88,12 @@ function SideBar() {
         <div className="bottom-options">
           {/* <button onClick={() => router.push('/settings')}> */}
             {/* <img src='/icons/settings.png' alt="" /> */}
-            <Link href={"/dashboard/settings"}>
+            <Link className='sidebar-option-btn' href={"/dashboard/settings"}>
               <img src='/icons/settings.png' alt="" />
 
               Settings
             </Link>
-            <button onClick={() => router.push('/')}>
+            <button className='sidebar-option-btn' onClick={() => router.push('/')}>
               <img src='/icons/logout.png' alt="" />
               Log Out
             </button>
@@ -97,7 +103,7 @@ function SideBar() {
         <div className="user">
           <div className="img-alternative">J</div>
           <h3 className="user-name">Jane Doe</h3>
-          <img className="caret" src={caretDown} alt="" />
+          <img className="caret" src='/icons/arrow-down-filled.png' alt="" />
         </div>
       </div>
     </div>

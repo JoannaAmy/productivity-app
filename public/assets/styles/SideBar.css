@@ -122,7 +122,7 @@ button {
     color: var(--primary100);
 }
 
-.sidebar button {
+.sidebar .sidebar-option-btn {
     display: flex;
     align-items: center;
 }
@@ -190,7 +190,7 @@ a>img {
     margin-bottom: 30px;
 }
 
-.bottom-options button {
+.bottom-options .sidebar-option-btn {
     width: 100%;
     text-align: left;
     font-size: 14px;
@@ -229,11 +229,12 @@ a>img {
   position: relative;
 }
 
-.create-dropdown {
+.create-dropdown-sidebar {
   position: absolute;
   top: 100%;
   left: 0;
   background: white;
+  color: #000;
   border: 1px solid #ccc;
   border-radius: 6px;
   padding: 8px 0;
@@ -242,7 +243,7 @@ a>img {
   width: 100%;
 }
 
-.create-dropdown button {
+.create-dropdown-sidebar button {
   display: block;
   width: 100%;
   padding: 8px 16px;
@@ -252,6 +253,6 @@ a>img {
   cursor: pointer;
 }
 
-.create-dropdown button:hover {
+.create-dropdown-sidebar button:hover {
   background-color: var(--primary90);
 }
