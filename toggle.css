@@ -2,12 +2,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-right: 0px;
       }
 
       .toggle-switch {
         position: relative;
         width: 60px;
         height: 30px;
+        
       }
 
       .toggle-switch input {
@@ -26,6 +28,7 @@
         border-radius: 1.5em;
         background-color: #ccc;
         transition: 0.4s;
+        
       }
 
       .toggle-button:before {
@@ -41,7 +44,7 @@
       }
 
       input:checked + .toggle-button {
-        background-color: #131414;
+        background-color: #665298;
       }
 
       input:checked + .toggle-button:before {

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body{
+            padding: 10px;
+            width: auto;
+            margin: auto;
+            height: 100vh; /* Full viewport height */
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .parent-container{
+            display: flex;
+            flex-direction: row; /* Arrange children in a row */
+            justify-content: space-between; /* Center horizontally */
+            align-items: center;
+            width: 1000px;
+            }
+        
+        .photo-container {
+            width: 50%; /* Set the desired width */
+            height: 100%; /* Set the desired height */
+            margin-bottom: 0px;
+            padding-bottom: 0%;
+            }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure the image covers the container */
+            margin-bottom: 0px;
+            padding-bottom: 0%;
+        }
+        .parent-container {
+            display: flex;
+            width: 1400px;
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+
+        }
+        .form-container{
+            margin-left: 0px;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-left: 230px;
+            padding-top: 200px;
+            padding-bottom: 50px;
+        }
+        @media (min-width: 320px) and (max-width: 1024px) {
+            .parent-container {
+                flex-direction: column; /* Stack vertically on small screens */
+                justify-content: center; /* Center vertically */
+                align-items: center; /* Center horizontally */
+                height: auto; /* Adjust height for content */
+                width: 890p;
+            }
+            .photo-container, .form-container {
+                width: 100%; /* Full width on small screens */
+                height: auto; /* Adjust height for content */
+            }
+            .form-container {
+                margin-left: 0; /* Reset margin for small screens */
+                margin-top: 20px; /* Add some top margin */
+                padding: 20px; /* Add some padding */
+                padding-left: 20px;
+            }
+            .img{
+                object-fit: contain;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="parent-container">
+       <!-- photo div -->
+       <div class="photo-div">
+           <img src="5c03a8a45c6327de7a96dce8bb3c23ce41fa1e35.jpg" alt="Description of photo">
+       </div>
+       <div class="log-in-container">
+        <!-- form div -->
+    <div class="form-container">
+        <div class="head">
+            <div class="logo-container"><img src="images/Group 29.svg" alt=""></div>
+            <div class="title">Zen<span style="color: black;">Plan</span></div>
+            <div class="subtitle">log into your account</div>
+        </div>
+
+        <div class="sign-in-options">
+                    <div><a href="#"><button class="accounts"><img src="images/google-logo-search-new-svgrepo-com.svg" alt="Google logo" class="google-logo">Continue with Google</button></a></div>
+                    </div>
+
+
+    </div>
+    </div>
+    </div>
+
+</body>
+</html>

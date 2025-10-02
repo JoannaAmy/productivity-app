@@ -1,0 +1,48 @@
+.header {
+        padding: 20px ;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+        background-color: white;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        
+      }
+      .progress-container{
+        border: 1px solid black;
+        width: 244px;
+        height: 7px;
+        border-radius: 20px;
+        margin-right: 20px;
+        display: flex;
+      }
+      .whole-prog{
+        display: flex;
+        align-items: center;
+      }
+      .step-count{
+        margin-right: 7px;
+      }
+      .progress-container .active{background-color: #665298;}
+      .step-1{
+        background-color: white;
+        flex: 1;
+        height: 7px;
+        border-radius: 20px;
+      }
+      .step-2{
+        background-color: white;
+        flex: 1;
+        height: 7px;
+        border-radius: 20px;
+        margin-left: -5px;
+      }
+      .step-3{
+        background-color: white;
+        flex: 1;
+        height: 7px;
+        border-radius: 20px;
+        margin-left: -5px;
+      }

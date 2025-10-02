@@ -1,43 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SyncFlow</title>
-    <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-    <div class="container">
-        <div class="head">
-            <div class="logo">SF</div>
-            <div class="title">Connect Your Digital Life</div>
-            <div class="subtitle"><p>SyncFlow works best when it can see your schedule. <br>Connect your 
-            primary calendar to unify your tasks and <br> events</p></div>
-<br>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="toggle.css" />
+    <link rel="stylesheet" href="header.css" />
+  </head>
+  <style>
+    .parent-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      align-self: center;
+      margin-top: 20px;
 
+    }
+    .globe img {
+      width: 20px;
+      height: 20px;
+    }
+    .time-zone {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      justify-self: unset;
+      margin-top: 8px;
+      width: 500px;
+    }
+    #timezone-select {
+      width: 453px;
+      height: 40px;
+      border: 1px solid #c4c4c4;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      outline: none;
+      box-shadow: none;
+      font-family: "Poppins", sans-serif;
+      color: #333333;
+      background-color: #f2f0f9;
+    }
 
-<div class="shield"><div class="shield-icon"><img  src="images/shield-alt-1-svgrepo-com.svg" alt="shield-icon"></div><span>your calendar data is encrypted and secure</span></div>
+    /* test css */
+    
+    .TZ-container{
+      width: 431px;
+      display: flex;
+      flex-direction: column;
+      
+    }
+    .WH-container{
+      width: 431px;
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      align-self: center;
+      justify-content: start;   
+    }
+    .working-hours-manager {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    .working-hours-select {
+      height: 40px;
+      width: 500px;
+      display: flex;
+      align-items: center;
+      border: 1px solid #e5e7eb;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+    input[type="time"] {
+      padding: 5px;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      background-color: #f2f0f9;
+      width: 103px;
+      height: 30px;
+    }
+    .first-prt , .second-prt {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .submit{
+      width: 525px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: center;
+      margin-bottom: 10px;
+      position: relative;
+      left: -2px;
+    }
+  </style>
+  <body>
+    <div class="header">
+      <div class="title">Zen<span style="color: #7f67be">Plan</span></div>
+
+      <div class="whole-prog">
+        <div class="step-count">step 2 of 3</div>
+        <div class="progress-container">
+          <div class="step-1 active"></div>
+          <div class="step-2 active"></div>
+          <div class="step-3"></div>
         </div>
-<br>
-        <div style="margin-top: 20px;" class="sign-in-options">
-                    <div class="web-sign"><a href="#"><button class="accounts"><img src="images/google-logo-search-new-svgrepo-com.svg" alt="Google logo" class="logo">Continue with Google <div class="description_app">Sync your Google events and meetings</div></button></a></div>
-                    <div class="web-sign"><a href="#"><button class="accounts"><img src="images/microsoft-svgrepo-com.svg" alt="Microsoft logo" class="logo">Continue with Microsoft <div class="description_app">Sync your Outlook calendar and meetings</div></button></a></div>
-                    <div class="web-sign"><a href="#"><button class="accounts"><img src="images/apple-logo-svgrepo-com.svg" alt="Apple logo" class="logo">Continue with Apple &nbsp;<div class="description_app">Sync your Apple calendar and events</div></button></a></div>
-                    </div>
-        <section class="footer">
-            <a class="link" href="#">Skip for now</a>
-        </section>
-        <section class="scroll-bar">
-            <div class="parent-scroll">
-            <a href="welcom-page.html"><div class="scroll-indicator"></div></a>
-            <a href="welcome-pg-2.html"><div class="scroll-indicator"></div></a>
-            <a href="welcome-pg-3.html"><div class="scroll-indicator" style="background-color: lightgray;"></div></a>
-            <a href="welcome-pg-4.html"><div class="scroll-indicator" style="background-color: lightgray;"></div></a>
-            </div>
-            <br>
-            <span class="subtitle"><p>step 2 of 4</p></span>
-        </section>
+      </div>
     </div>
-</body>
 
+    <!-- content part -->
+    <div class="parent-container">
+      <div style="display: flex;
+      flex-direction: column;
+      position: relative;
+      left: 40px;">
+              <div class="logo-container">
+        <img
+          style="position: relative; left: -12.4px"
+          src="images/Group 29.svg"
+          class="ZP-logo" />
+      </div>
+      <div class="title">Protect your Time</div>
+      <div class="subtitle">
+        Define your working hours so we know when you're available for
+        <br />meetings.
+      </div>
+      </div>
+
+      <div class="TZ-container">
+        <div class="time-zone">
+          <div class="globe">
+            <img src="images/globe-alt-svgrepo-com.svg" alt="" />
+          </div>
+          <div class="TZ">&nbsp;Timezone</div>
+        </div>
+        <select name="Timezone" id="timezone-select">
+          <option value="pst">Pacific Standard Time (PST)</option>
+          <option value="mst">Mountain Standard Time (MST)</option>
+          <option value="cst">Central Standard Time (CST)</option>
+          <option value="est">Eastern Standard Time (EST)</option>
+        </select>
+      </div>
+      <br />
+      <div class="WH-container">
+        <div class="time-zone">
+          <div class="globe">
+            <img src="images/clock-two-svgrepo-com.svg" alt="" />
+          </div>
+          <div class="TZ">&nbsp;Working Hours</div>
+        </div>
+        <br />
+        <div class="working-hours-select">
+          <div class="working-hours-manager">
+            <div class="first-prt">
+              <div class="working-hours-title">
+                <div class="toggle-container">
+                  <div class="toggle-switch">
+                    <input type="checkbox" id="toggle" />
+                    <label for="toggle" class="toggle-button"></label>
+                  </div>
+                </div>
+              </div>
+
+              <p>Monday</p>
+              &nbsp;
+            </div>
+            <div class="second-prt">
+              <div class="working-hours-option">
+                <label for="start-time"></label>
+                <input type="time" id="start-time" name="start-time" />
+              </div>
+              to
+              <div class="working-hours-option">
+                <label for="end-time"></label>
+                <input type="time" id="end-time" name="end-time" />
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="working-hours-select">
+          <div class="working-hours-manager">
+            <div class="first-prt">
+            <div class="working-hours-title">
+              <div class="toggle-container">
+                <div class="toggle-switch">
+                  <input type="checkbox" id="toggle2" />
+                  <label for="toggle2" class="toggle-button"></label>
+                </div>
+              </div>
+            </div>
+
+            Tuesday &nbsp;
+          </div>
+          <div class="second-prt">
+            <div class="working-hours-option">
+              <label for="start-time"></label>
+              <input type="time" id="start-time" name="start-time" />
+            </div>
+            to
+            <div class="working-hours-option">
+              <label for="end-time"></label>
+              <input type="time" id="end-time" name="end-time" />
+            </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="working-hours-select">
+          <div class="working-hours-manager">
+            <div class="first-prt">
+            <div class="working-hours-title">
+              <div class="toggle-container">
+                <div class="toggle-switch">
+                  <input type="checkbox" id="toggle3" />
+                  <label for="toggle3" class="toggle-button"></label>
+                </div>
+              </div>
+            </div>
+
+            Wednesday &nbsp;
+            </div>
+            <div class="second-prt">
+            <div class="working-hours-option">
+              <label for="start-time"></label>
+              <input type="time" id="start-time" name="start-time" />
+            </div>
+            to
+            <div class="working-hours-option">
+              <label for="end-time"></label>
+              <input type="time" id="end-time" name="end-time" />
+            </div>
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="working-hours-select">
+          <div class="working-hours-manager">
+            <div class="first-prt">
+              <div class="working-hours-title">
+                <div class="toggle-container">
+                  <div class="toggle-switch">
+                    <input type="checkbox" id="toggle4" />
+                    <label for="toggle4" class="toggle-button"></label>
+                </div>
+              </div>
+            </div>
+
+            Thursday &nbsp;
+            </div>
+            <div class="second-prt">
+            <div class="working-hours-option">
+              <label for="start-time"></label>
+              <input type="time" id="start-time" name="start-time" />
+            </div>
+            to
+            <div class="working-hours-option">
+              <label for="end-time"></label>
+              <input type="time" id="end-time" name="end-time" />
+            </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="working-hours-select">
+          <div class="working-hours-manager">
+            <div class="first-prt">
+            <div class="working-hours-title">
+              <div class="toggle-container">
+                <div class="toggle-switch">
+                  <input type="checkbox" id="toggle5" />
+                  <label for="toggle5" class="toggle-button"></label>
+                </div>
+              </div>
+            </div>
+
+            Friday &nbsp;
+            </div>
+            <div class="second-prt">
+            <div class="working-hours-option">
+              <label for="start-time"></label>
+              <input type="time" id="start-time" name="start-time" />
+            </div>
+            to
+            <div class="working-hours-option">
+              <label for="end-time"></label>
+              <input type="time" id="end-time" name="end-time" />
+            </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="working-hours-select">
+          <div class="working-hours-manager">
+            <div class="first-prt">
+            <div class="working-hours-title">
+              <div class="toggle-container">
+                <div class="toggle-switch">
+                  <input type="checkbox" id="" />
+                  <label for="" class="toggle-button"></label>
+                </div>
+              </div>
+            </div>
+
+            Saturday &nbsp;
+            </div>
+            <div class="second-prt">
+            <div class="working-hours-option"></div>
+
+            <div class="working-hours-option">off</div>
+          </div>
+          </div>
+        </div>
+
+
+        <div class="working-hours-select">
+        <div class="working-hours-manager">
+          <div class="first-prt">
+          <div class="working-hours-title">
+            <div class="toggle-container">
+              <div class="toggle-switch">
+                <input type="checkbox" id="" />
+                <label for="" class="toggle-button"></label>
+              </div>
+            </div>
+          </div>
+
+          Sunday &nbsp;
+          </div>
+          <div class="second-prt">
+          <div class="working-hours-option"></div>
+
+          <div class="working-hours-option">off</div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="email-button">
+      <button class="submit" type="submit">Continue</button>
+    </div>
+      </div>
+      
+    
+  </body>
 </html>
