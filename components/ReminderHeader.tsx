@@ -4,8 +4,7 @@ import React, { useState } from 'react';
 // import { Link } from 'react-router-dom';
 import Link from 'next/link';
 import '../public/assets/styles/ReminderHeader.css';
-import clockIcon from './icons/clock2.png'
-import angleDown from './icons/filter-arrow-down.png';
+import '../public/assets/styles/Modal.css';
 import ToggleSelect from '../app/dashboard/reminders/components/ToggleSelect';
 import { usePathname } from 'next/navigation';
 
@@ -108,7 +107,7 @@ function ReminderHeader({ onCreateReminder }) {
             <div className="customize-btns">
               <button className="filter">
                 All categories
-                <img className="angledown" src={angleDown} alt="" />
+                <img className="angledown" src='/icons/filter-arrow-down.png' alt="" />
               </button>
             </div>
           </div>
@@ -119,7 +118,7 @@ function ReminderHeader({ onCreateReminder }) {
           <div className="modal-content">
             <div className="modal-heading">
               <h2>
-                <img src={clockIcon} alt="" className="icon" />
+                <img src='/icons/reminder.png' alt="" className="icon" />
                 Create Reminder</h2>
               <button onClick={() => setShowModal(false)}>╳</button>
             </div>

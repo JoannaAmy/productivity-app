@@ -3,8 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import "../public/assets/styles/TaskHeader.css";
-import taskIcon from "./icons/tasks.png";
-import angleDownIcon from './icons/filter-arrow-down.png';
+import '../public/assets/styles/Modal.css';
 import { usePathname } from "next/navigation";
 
 function TaskHeader({ onCreateTask }) {
@@ -151,13 +150,13 @@ function TaskHeader({ onCreateTask }) {
 
         <div className="bottomright">
           <div className="customize-btns">
-            <button className="export">
+            <button className="filter">
               All categories
-              <img src={angleDownIcon} alt="" />
+              <img src='/icons/filter-arrow-down.png' alt="" />
             </button>
             <button className="filter">
               Sort
-              <img className="angledown" src={angleDownIcon} alt="" />
+              <img className="angledown" src='/icons/filter-arrow-down.png' alt="" />
             </button>
           </div>
         </div>
@@ -169,7 +168,7 @@ function TaskHeader({ onCreateTask }) {
             <div className="modal-content">
               <div className="modal-heading">
                 <h2>
-                  <img src={taskIcon} alt="" className="icon" />
+                  <img src='/icons/tasks.png' alt="" className="icon" />
                   Create Task
                 </h2>
                 <button onClick={() => setShowModal(false)}>╳</button>

@@ -3,10 +3,6 @@
 import React from 'react';
 // import { useLocation, useOutletContext } from 'react-router-dom';
 import { usePathname, useRouter } from 'next/navigation';
-import trashIcon from './icons/trash.png';
-import clockIcon from './icons/clock2.png';
-import tagIcon from './icons/tag.png';
-import noTaskImg from './icons/no-tasks.png';
 // import no-task from './'
 import './Tasks.css';
 
@@ -83,7 +79,7 @@ function Tasks(filter) {
                         {task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}
                       </span>
                       <span className="is-due">
-                        <img className="icon" src={clockIcon} alt="" />
+                        <img className="icon" src='/icons/clock2.png' alt="" />
                         {task.dueDate} {task.dueTime}
                       </span>
                     </div>
@@ -92,7 +88,7 @@ function Tasks(filter) {
                         {task.category.charAt(0).toUpperCase() + task.category.slice(1)}
                       </span>
                       <div className="tags">
-                        <img className="icon" src={tagIcon} alt="" />
+                        <img className="icon" src='/icons/tag.png' alt="" />
                         {task.tags && task.tags.length > 0 ? (
                           task.tags.map(tag => (
                             <span className="tag-item" key={tag}>{tag}</span>
@@ -107,7 +103,7 @@ function Tasks(filter) {
                 <div className="task-right">
                   <img
                     className="icon"
-                    src={trashIcon}
+                    src='/icons/trash.png'
                     alt="Delete"
                     style={{ cursor: 'pointer' }}
                     onClick={() => handleDelete(task.id)}
@@ -119,7 +115,7 @@ function Tasks(filter) {
         </div>
       ) : (  */}
         <div className="notasks">
-          <img src={"./icons/no-tasks.png"} alt="" />
+          <img src="/icons/no-tasks.png" alt="" />
           <h3>No task found</h3>
           <p>No <span className="filters">{pathname.split('/').pop()}</span> task to display</p>
         </div>
