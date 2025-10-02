@@ -1,17 +1,48 @@
-import React, {useState} from 'react';
-import { NavLink } from 'react-router-dom';
-import '../assets/styles/ReminderHeader.css';
+'use client'
+
+import React, { useState } from 'react';
+// import { Link } from 'react-router-dom';
+import Link from 'next/link';
+import '../public/assets/styles/ReminderHeader.css';
 import clockIcon from './icons/clock2.png'
 import angleDown from './icons/filter-arrow-down.png';
-import ToggleSelect from '../screens/Reminder/components/ToggleSelect';
+import ToggleSelect from '../app/dashboard/reminders/components/ToggleSelect';
+import { usePathname } from 'next/navigation';
+
 
 function ReminderHeader({ onCreateReminder }) {
-    const [showModal, setShowModal] = useState(false);
-    const [title, setTitle] = useState('');
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
-    const [reminder, setReminder] = useState('');
-    const [showReminderDropdown, setShowReminderDropdown] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [title, setTitle] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [reminder, setReminder] = useState('');
+  const [showReminderDropdown, setShowReminderDropdown] = useState(false);
+
+  const pathname = usePathname();
+
+  const links = [
+    {
+      href: `all`,
+      title: 'All'
+    },
+    {
+      href: `active`,
+      title: 'Active'
+    },
+    {
+      href: `inactive`,
+      title: 'Inactive'
+    }
+  ]
+
+  const linkActive = (href: string) => {
+    if (pathname.includes(href)) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  };
 
   return (
     <>
@@ -33,30 +64,43 @@ function ReminderHeader({ onCreateReminder }) {
         <div className="bottom">
           <div className="bottomleft">
             <div className="calendar-toggle-links">
-              <NavLink
+              {/* <Link
                 to="/reminder/all"
                 className={({ isActive }) =>
                   `calendar-toggle-link ${isActive ? 'selected-link' : ''}`
                 }
               >
                 All
-              </NavLink>
-              <NavLink
+              </Link>
+              <Link
                 to="/reminder/active"
                 className={({ isActive }) =>
                   `calendar-toggle-link ${isActive ? 'selected-link' : ''}`
                 }
               >
                 Active
-              </NavLink>
-              <NavLink
+              </Link>
+              <Link
                 to="/reminder/inactive"
                 className={({ isActive }) =>
                   `calendar-toggle-link ${isActive ? 'selected-link' : ''}`
                 }
               >
                 Inactive
-              </NavLink>
+              </Link> */}
+
+             
+            {
+              links.map(({ href, title }) => {
+                return <Link
+                  key={href}
+                  href={`/dashboard/reminders/${href}`}
+                  className={`calendar-toggle-link ${linkActive(href) ? 'selected-link' : ''}`}
+                >
+                  {title}
+                </Link>
+              })
+            }
             </div>
           </div>
 
@@ -144,7 +188,7 @@ function ReminderHeader({ onCreateReminder }) {
             </div>
 
             <div className='modal-span'>
-              <ToggleSelect /> 
+              <ToggleSelect />
               <span>Activate reminder</span>
             </div>
 

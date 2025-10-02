@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import '../assets/styles/ReminderHeader.css';
 import clockIcon from './icons/clock2.png'
 import angleDown from './icons/filter-arrow-down.png';
-import ToggleSelect from '../screens/Reminder/components/ToggleSelect';
+// import ToggleSelect from '../screens/Reminder/components/ToggleSelect';
 
 function ReminderHeader({ onCreateReminder }) {
     const [showModal, setShowModal] = useState(false);

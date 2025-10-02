@@ -10,6 +10,7 @@ import logoutIcon from './icons/logout.png';
 import caretDown from './icons/arrow-down-filled.png';
 import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 
 function SideBar() {
@@ -25,6 +26,12 @@ function SideBar() {
     router.push(path);
     setShowDropdown(false);
   };
+
+  const links = [
+    { href: `tasks/all`, title: 'Tasks' , src : {tasksIcon}},
+    { href: `calendar/events`, title: 'Calendar', src: {calendarIcon} },
+    { href: `reminders/all`, title: 'Reminders', src: {reminderIcon} }
+  ]
 
 
   return (
@@ -44,7 +51,7 @@ function SideBar() {
           )}
         </div>
         <div className="sidebar-options">
-          <button
+          {/* <button
             className={`sidebar-option-btn ${pathname.startsWith('/calendar') ? 'selected-btn' : ''}`}
             onClick={() => router.push('/calendar/events')}
           >
@@ -66,19 +73,27 @@ function SideBar() {
           >
             <img src={reminderIcon} alt="" />
             Reminder
-          </button>
+          </button> */}
+
+          {links.map(({href, title}) => {
+            return <Link key={href} href={`/dashboard/${href}`}
+            className={`sidebar-option-btn ${pathname.includes(href) ? 'selected-btn' : ''}`}>
+              {title}
+            </Link>
+          })}
         </div>
       </div>
       <div className="bottom-sidebar">
         <div className="bottom-options">
-          <button onClick={() => router.push('/settings')}>
+          <Link href={"/dashboard/settings"}>
             <img src={settingsIcons} alt="" />
             Settings
-          </button>
+          </Link>
           <button onClick={() => router.push('/')}>
             <img src={logoutIcon} alt="" />
             Log Out
           </button>
+          
         </div>
         <hr />
         <div className="user">

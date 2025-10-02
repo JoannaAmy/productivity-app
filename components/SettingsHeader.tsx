@@ -1,6 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import '../assets/styles/CalendarHeader.css';
+import Link from 'next/link';
+import '../public/assets/styles/CalendarHeader.css';
 
 function CalendarHeader() {
   return (

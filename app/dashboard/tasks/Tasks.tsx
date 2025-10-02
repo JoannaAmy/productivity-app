@@ -1,14 +1,18 @@
+"use client"
+
 import React from 'react';
-import { useLocation, useOutletContext } from 'react-router-dom';
+// import { useLocation, useOutletContext } from 'react-router-dom';
+import { usePathname, useRouter } from 'next/navigation';
 import trashIcon from './icons/trash.png';
 import clockIcon from './icons/clock2.png';
 import tagIcon from './icons/tag.png';
-import noTaskImg from './no-tasks.png';
+import noTaskImg from './icons/no-tasks.png';
+// import no-task from './'
 import './Tasks.css';
 
-function Tasks() {
-  const location = useLocation();
-  const { tasks, setTasks } = useOutletContext();
+function Tasks(filter) {
+  const pathname = usePathname();
+  // const { tasks, setTasks } = useOutletContext();
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -20,34 +24,37 @@ function Tasks() {
     return task.status;
   };
 
-  const path = location.pathname;
-  const filteredTasks = tasks.filter(task => {
-    const status = getStatus(task);
-    if (path.includes('pending')) return status === 'pending';
-    if (path.includes('completed')) return status === 'completed';
-    if (path.includes('overdue')) return status === 'overdue';
-    return true;
-  });
 
-  const completedCount = tasks.filter(t => getStatus(t) === 'completed').length;
-  const totalCount = tasks.length;
+  // const filteredTasks = tasks.filter(task => {
+  //   const status = getStatus(task);
+  //   if (pathname.includes('pending')) return status === 'pending';
+  //   if (pathname.includes('completed')) return status === 'completed';
+  //   if (pathname.includes('overdue')) return status === 'overdue';
+  //   return true;
+  // });
 
-  const handleDelete = id => {
-    setTasks(prev => prev.filter(task => task.id !== id));
-  };
+  // const completedCount = tasks.filter(t => getStatus(t) === 'completed').length;
+  // const totalCount = tasks.length;
 
-  const handleToggleComplete = id => {
-    setTasks(prev =>
-      prev.map(task =>
-        task.id === id
-          ? {
-              ...task,
-              status: task.status === 'completed' ? 'pending' : 'completed',
-            }
-          : task
-      )
-    );
-  };
+  const completedCount = 20;
+  const totalCount = 20;
+
+  // const handleDelete = id => {
+  //   setTasks(prev => prev.filter(task => task.id !== id));
+  // };
+
+  // const handleToggleComplete = id => {
+  //   setTasks(prev =>
+  //     prev.map(task =>
+  //       task.id === id
+  //         ? {
+  //           ...task,
+  //           status: task.status === 'completed' ? 'pending' : 'completed',
+  //         }
+  //         : task
+  //     )
+  //   );
+  // };
 
   return (
     <div className="tasks-page">
@@ -57,7 +64,7 @@ function Tasks() {
         <span className="total-task-count">{totalCount}</span> tasks completed
       </p>
 
-      {filteredTasks.length > 0 ? (
+      {/* {filteredTasks.length > 0 ? (
         <div className="tasks-list">
           {filteredTasks.map(task => {
             const status = getStatus(task);
@@ -110,13 +117,13 @@ function Tasks() {
             );
           })}
         </div>
-      ) : (
+      ) : (  */}
         <div className="notasks">
-          <img src={noTaskImg} alt="" />
+          <img src={"./icons/no-tasks.png"} alt="" />
           <h3>No task found</h3>
-          <p>No <span className="filters">{path.split('/').pop()}</span> task to display</p>
+          <p>No <span className="filters">{pathname.split('/').pop()}</span> task to display</p>
         </div>
-      )}
+      {/* )}  */}
     </div>
   );
 }

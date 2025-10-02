@@ -1,10 +1,13 @@
+"use client"
+
 import React, { useState } from 'react';
 import './Settings.css'
 import ToggleSelect from './components/ToggleSelect'
-import { useNavigate } from 'react-router-dom';
+// import { userouter } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 function Settings() {
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const [userName, setUserName] = useState('Jane Doe');
     const [userEmail, setUserEmail] = useState('jane@example.com');
@@ -70,7 +73,7 @@ function Settings() {
                 </div>
                 <hr />
                 <div className="close-btns">
-                    <button className="sec-btn" onClick={() => navigate('/calendar/events')}>Cancel</button>
+                    <button className="sec-btn" onClick={() => router('/calendar/events')}>Cancel</button>
                     <button className='primary-btn' 
                         onClick={() => {
                             setUserName(newName);

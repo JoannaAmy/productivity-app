@@ -148,7 +148,7 @@ h1 {
     transition: all .4s ease;
 }
 
-button>img {
+a>img {
     width: 100px;
 }
 
@@ -157,7 +157,7 @@ button>img {
     flex-direction: column;
 }
 
-.sidebar-options button {
+.sidebar-options a {
     text-align: left;
     color: var(--primary100);
     font-size: 14px;
@@ -165,9 +165,10 @@ button>img {
     border-radius: 10px;
 }
 
-.sidebar-options button:hover {
+.sidebar-options a:hover {
     background-color: #000;
     transition: all .5s ease;
+    color: #fff;
 }
 
 .sidebar-options .selected-btn {
