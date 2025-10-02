@@ -23,9 +23,9 @@ function SideBar() {
   };
 
   const links = [
-    { href: `tasks/all`, title: 'Tasks' , src : {tasksIcon}},
-    { href: `calendar/events`, title: 'Calendar', src: {calendarIcon} },
-    { href: `reminders/all`, title: 'Reminders', src: {reminderIcon} }
+    { href: `tasks/all`, title: 'Tasks', src: "/icons/tasks.png"},
+    { href: `calendar/events`, title: 'Calendar', src: "/icons/calendar.png" },
+    { href: `reminders/all`, title: 'Reminders', src: "/icons/reminder.png" }
   ]
 
 
@@ -70,9 +70,9 @@ function SideBar() {
             Reminder
           </button> */}
 
-          {links.map(({href, title}) => {
+          {links.map(({ href, title }) => {
             return <Link key={href} href={`/dashboard/${href}`}
-            className={`sidebar-option-btn ${pathname.includes(href) ? 'selected-btn' : ''}`}>
+              className={`sidebar-option-btn ${pathname.includes(href) ? 'selected-btn' : ''}`}>
               {title}
             </Link>
           })}
@@ -80,17 +80,18 @@ function SideBar() {
       </div>
       <div className="bottom-sidebar">
         <div className="bottom-options">
-          <button onClick={() => router.push('/settings')}>
-            <img src='/icons/settings.png' alt="" />
-          <Link href={"/dashboard/settings"}>
-            <img src={settingsIcons} alt="" />
-            Settings
-          </Link>
-          <button onClick={() => router.push('/')}>
-            <img src='/icons/logout.png' alt="" />
-            Log Out
-          </button>
-          
+          {/* <button onClick={() => router.push('/settings')}> */}
+            {/* <img src='/icons/settings.png' alt="" /> */}
+            <Link href={"/dashboard/settings"}>
+              <img src='/icons/settings.png' alt="" />
+
+              Settings
+            </Link>
+            <button onClick={() => router.push('/')}>
+              <img src='/icons/logout.png' alt="" />
+              Log Out
+            </button>
+
         </div>
         <hr />
         <div className="user">
