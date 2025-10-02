@@ -1,6 +1,21 @@
 import React from 'react';
 import Image from 'next/image';
 import '../../Calendar.css';
+import { z } from 'zod';
+
+const eventSchema = z.object({
+  name: z.string().min(3, 'Event Namae Required'),
+  type: z.string().min(1, 'Meeting type is required'),
+  date: z.iso.datetime('Invalid date and time'),
+  guestEmail: z.array(z.string().email())
+  .refine((arr) => new Set(arr).size === arr.length, {
+    message: "Emails must be unique",
+  }),
+  notes: z.string().optional(),
+  autoConfirmation: z.boolean().default(true)
+
+})
+type CreateEventData = z.infer<typeof eventSchema>
 
 function Events({ events, onDeleteEvent }) {
   const getWeekDates = () => {

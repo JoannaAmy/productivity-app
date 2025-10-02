@@ -313,7 +313,7 @@ function CalendarHeader({ onCreateEvent }) {
               <textarea name="" id="notes" placeholder='Add meeting agenda, preparation notes or special requirements...'></textarea>
             </div>
             <div className="confirmation">
-              <Image className='icon' src={settingsIcon} alt="" width={20} height={20} />
+              <Image className='icon' src="/icons/settingsIcon" alt="" width={20} height={20} />
               <span>
                 <h4>Auto-confirmation</h4>
                 <p>
