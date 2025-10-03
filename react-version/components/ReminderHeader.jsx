@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import '../assets/styles/ReminderHeader.css';
 import clockIcon from './icons/clock2.png'
 import angleDown from './icons/filter-arrow-down.png';
+import Link from 'next/link';
 // import ToggleSelect from '../screens/Reminder/components/ToggleSelect';
 
 function ReminderHeader({ onCreateReminder }) {
@@ -24,9 +25,9 @@ function ReminderHeader({ onCreateReminder }) {
             </p>
           </div>
           <div className="topright">
-            <button className="primary-btn" onClick={() => setShowModal(true)}>
+            <Link href='?modal=create-reminder' className="primary-btn">
               + Add Reminder
-            </button>
+            </Link>
           </div>
         </div>
 

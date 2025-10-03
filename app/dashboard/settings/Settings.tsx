@@ -21,7 +21,7 @@ function Settings() {
             <div className="settings-head">
                 <div className="info">
                     <div className="profile-img">
-                        <img src="" alt="" />
+                        {/* <img src="" alt="" /> */}
                         <span className='user-fname'>{userName.charAt(0).toUpperCase()}</span>
                     </div>
                     <div className="profile-info">

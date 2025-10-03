@@ -92,9 +92,9 @@ function TaskHeader({ onCreateTask }) {
           <p className="header-text">Focus on what truly matters every day</p>
         </div>
         <div className="topright">
-          <button className="primary-btn" onClick={() => setShowModal(true)}>
+          <Link href='?modal=create-task' className="primary-btn">
             + Add Task
-          </button>
+          </Link>
         </div>
       </div>
 

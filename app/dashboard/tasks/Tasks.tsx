@@ -117,7 +117,8 @@ function Tasks(filter) {
         <div className="notasks">
           <img src="/icons/no-tasks.png" alt="" />
           <h3>No task found</h3>
-          <p>No <span className="filters">{pathname.split('/').pop()}</span> task to display</p>
+          {/* <p>No <span className="filters">{pathname.split('/').pop()}</span> task to display</p> */}
+          <p>No task to display</p>
         </div>
       {/* )}  */}
     </div>

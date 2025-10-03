@@ -12,45 +12,45 @@ import ToggleSelect from "./components/ToggleSelect";
 import "./Reminders.css";
 
 function Reminders() {
-  const pathname = usePathname();
+    const pathname = usePathname();
 
-  // const { reminders, setReminders } = useOutletContext();
+    // const { reminders, setReminders } = useOutletContext();
 
-  // const handleToggle = (id) => {
-  //   setReminders(prev =>
-  //     prev.map(reminder =>
-  //       reminder.id === id
-  //         ? { ...reminder, active: !reminder.active }
-  //         : reminder
-  //     )
-  //   );
-  // };
+    // const handleToggle = (id) => {
+    //   setReminders(prev =>
+    //     prev.map(reminder =>
+    //       reminder.id === id
+    //         ? { ...reminder, active: !reminder.active }
+    //         : reminder
+    //     )
+    //   );
+    // };
 
-  // const handleDelete = (id) => {
-  //   setReminders(prev => prev.filter(reminder => reminder.id !== id));
-  // };
+    // const handleDelete = (id) => {
+    //   setReminders(prev => prev.filter(reminder => reminder.id !== id));
+    // };
 
-  // const activeCount = reminders.filter(r => r.active).length;
-  const activeCount = 20;
+    // const activeCount = reminders.filter(r => r.active).length;
+    const activeCount = 0;
 
-  // Filter based on route
-  const path = pathname;
-  // const filteredReminders = path.includes("/reminder/active")
-  //   ? reminders.filter((r) => r.active)
-  //   : path.includes("/reminder/inactive")
-  //   ? reminders.filter((r) => !r.active)
-  //   : reminders;
+    // Filter based on route
+    const path = pathname;
+    // const filteredReminders = path.includes("/reminder/active")
+    //   ? reminders.filter((r) => r.active)
+    //   : path.includes("/reminder/inactive")
+    //   ? reminders.filter((r) => !r.active)
+    //   : reminders;
 
-  return (
-    <div className="reminders-page">
-      <h2>Reminders</h2>
-      <p>
-        <span className="active-count">{activeCount}</span> out of{" "}
-        {/* <span className="total-reminders">{reminders.length}</span> reminders */}
-        {/* are active */}
-      </p>
-      <div className="reminders-list">
-        {/* {filteredReminders.map((reminder) => (
+    return (
+        <div className="reminders-page">
+            <h2>Reminders</h2>
+            <p>
+                <span className="active-count">{activeCount}</span> out of{" "} 0
+                {/* <span className="total-reminders">{reminders.length}</span> reminders */}
+                {/* are active */}
+            </p>
+            <div className="reminders-list">
+                {/* {filteredReminders.map((reminder) => (
           <div className="reminder" key={reminder.id}>
             <div className="reminder-left">
               <div className="reminder-desc">
@@ -90,9 +90,16 @@ function Reminders() {
             </div>
           </div>
         ))} */}
-      </div>
-    </div>
-  );
+                <div className="no-reminders">
+                    <img
+                        src="/icons/no-events.png"
+                        alt=""
+                    />
+                    <p>No Reminders</p>
+                </div>
+            </div>
+        </div>
+    );
 }
 
 export default Reminders;

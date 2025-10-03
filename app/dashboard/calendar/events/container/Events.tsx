@@ -1,74 +1,76 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import Image from 'next/image';
 import '../../Calendar.css';
 import { z } from 'zod';
 
 const eventSchema = z.object({
-  name: z.string().min(3, 'Event Namae Required'),
-  type: z.string().min(1, 'Meeting type is required'),
-  date: z.iso.datetime('Invalid date and time'),
-  guestEmail: z.array(z.string().email())
-  .refine((arr) => new Set(arr).size === arr.length, {
-    message: "Emails must be unique",
-  }),
-  notes: z.string().optional(),
-  autoConfirmation: z.boolean().default(true)
+    name: z.string().min(3, 'Event Namae Required'),
+    type: z.string().min(1, 'Meeting type is required'),
+    date: z.iso.datetime('Invalid date and time'),
+    guestEmail: z.array(z.string().email())
+        .refine((arr) => new Set(arr).size === arr.length, {
+            message: "Emails must be unique",
+        }),
+    notes: z.string().optional(),
+    autoConfirmation: z.boolean().default(true)
 
 })
 type CreateEventData = z.infer<typeof eventSchema>
 
 function Events({ events, onDeleteEvent }) {
-  const getWeekDates = () => {
-    const today = new Date();
-    const dayOfWeek = today.getDay();
-    const startOfWeek = new Date(today);
-    startOfWeek.setDate(today.getDate() - dayOfWeek);
+    const getWeekDates = () => {
+        const today = new Date();
+        const dayOfWeek = today.getDay();
+        const startOfWeek = new Date(today);
+        startOfWeek.setDate(today.getDate() - dayOfWeek);
 
-    const week = [];
-    for (let i = 0; i < 7; i++) {
-      const date = new Date(startOfWeek);
-      date.setDate(startOfWeek.getDate() + i);
-      week.push(date);
-    }
-    return week;
-  };
+        const week = [];
+        for (let i = 0; i < 7; i++) {
+            const date = new Date(startOfWeek);
+            date.setDate(startOfWeek.getDate() + i);
+            week.push(date);
+        }
+        return week;
+    };
 
-  return (
-    <div className="events">
-      <div className="dates-panel">
-        <h5>
-          <Image src="/icons/calendar.png" alt="" width={20} height={20} />
-          This week
-        </h5>
-        <div className="dates-container">
-          {getWeekDates().map((date, index) => {
-            const isToday = date.toDateString() === new Date().toDateString();
-            const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
-            const dayNumber = date.getDate();
+    return (
+        <div className="events">
+            <div className="dates-panel">
+                <h5>
+                    <Image src="/icons/calendar.png" alt="" width={20} height={20} />
+                    This week
+                </h5>
+                <div className="dates-container">
+                    {getWeekDates().map((date, index) => {
+                        const isToday = date.toDateString() === new Date().toDateString();
+                        const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+                        const dayNumber = date.getDate();
 
-            const className = isToday
-              ? 'today regular'
-              : index < new Date().getDay()
-              ? 'day-prev regular'
-              : 'day-next regular';
+                        const className = isToday
+                            ? 'today regular'
+                            : index < new Date().getDay()
+                                ? 'day-prev regular'
+                                : 'day-next regular';
 
-            return (
-              <div className={className} key={index}>
-                {dayName} <span>{dayNumber}</span>
-                {isToday && <Image src="/icons/clock.png" alt="" width={16} height={16} />}
-              </div>
-            );
-          })}
-        </div>
-      </div>
+                        return (
+                            <div className={className} key={index}>
+                                {dayName} <span>{dayNumber}</span>
+                                {isToday && <Image src="/icons/clock.png" alt="" width={16} height={16} />}
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
 
-      <div className="upcoming-events">
-        <h5>
-          <Image src="/icons/calendar.png" alt="" width={20} height={20} />
-          Upcoming Events
-        </h5>
-        <div className="events-container">
-          {/* {events.length > 0 ? (
+
+            <div className="upcoming-events">
+                <h5>
+                    <Image src="/icons/calendar.png" alt="" width={20} height={20} />
+                    Upcoming Events
+                </h5>
+                <div className="events-container">
+                    {/* {events.length > 0 ? (
             events.map((event, index) => (
               <div className="event" key={index}>
                 <div className="event-desc">
@@ -105,18 +107,18 @@ function Events({ events, onDeleteEvent }) {
               </div>
             ))
           ) : ( */}
-            <div className="no-events">
-              <img
-                src="/icons/no-events.png"
-                alt=""
-              />
-              <p>No events scheduled</p>
+                    <div className="no-events">
+                        <img
+                            src="/icons/no-events.png"
+                            alt=""
+                        />
+                        <p>No events scheduled</p>
+                    </div>
+                    {/* )} */}
+                </div>
             </div>
-          {/* )} */}
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default Events;

@@ -3,8 +3,8 @@
 .custom-time-select {
   position: relative;
   margin: 0px 8px;
-  max-width: 200px;
-  font-family: sans-serif;
+  max-width: 600px;
+    width: 100%;
 }
 
 .select-box {

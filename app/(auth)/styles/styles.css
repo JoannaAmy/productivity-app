@@ -1,8 +1,8 @@
-body {
+/* body {
   font-family: 'Open Sans', sans-serif;
   margin: 0px;
   background-color: #fff;
-}
+} */
 .head {
   display: flex;
   flex-direction: column;

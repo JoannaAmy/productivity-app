@@ -101,3 +101,8 @@
     width: 20px;
     height: 20px;
 }
+
+.no-reminders {
+    margin: 0 auto;
+    text-align: center;
+}
