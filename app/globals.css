@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Product Sans'), url('../fonts/ProductSans-Regular.woff') format('woff');
+}
+
+body {
+    background: #fff;
+    /* color: var(--foreground); */
+    /* font-family: Arial, Helvetica, sans-serif; */
+    /* font-family: 'Product Sans'; */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.zod-error-text {
+    color: red;
+}
+
+.date-time {
+    width: 100%;
+}
+
+/* input {
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+} */

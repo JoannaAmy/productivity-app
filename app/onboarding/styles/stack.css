@@ -1,0 +1,99 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.one {
+    background-color: lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    box-shadow: 0 4px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.notify {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    padding: 8px;
+    font-size: 12px;
+}
+
+.in-one {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.two {
+    background-color: white;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.two ul li:nth-child(1)::before {
+    color: rgb(10, 10, 10);
+    content: "\2022";
+}
+
+.two ul li:nth-child(2) {
+    color: rgb(179, 179, 179);
+    font-size: smaller;
+    content: "";
+}
+
+.two {
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 2px rgba(0, 0, 0, 0.3);
+    padding-right: 70px;
+    padding-left: 0px;
+    position: relative;
+    top: -65px;
+    transform: rotate(-7deg);
+}
+
+.three {
+    background-color: white;
+    padding: 10px;
+    padding-right: 70px;
+    padding-left: 0px;
+    border-radius: 15px;
+    box-shadow: 0 4px 2px rgba(0, 0, 0, 0.3);
+    position: relative;
+    top: -105px;
+    left: 52px;
+    transform: rotate(7deg);
+}
+
+.three ul li:nth-child(1)::before {
+    color: green;
+    content: "\2022";
+}
+
+.three ul li:nth-child(2) {
+    color: rgb(179, 179, 179);
+    font-size: smaller;
+    content: "";
+}
+
+.step3-img {
+    margin-block: 20px;
+}

@@ -1,0 +1,19 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* .layout {
+    background-color: #2A292C;
+} */
+
+.screen {
+    background-color: #ffffff;
+    width: 70%;
+    padding: 30px 70px;
+    border-radius: 20px 0 0 20px;
+}

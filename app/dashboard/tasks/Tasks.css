@@ -1,0 +1,155 @@
+
+
+.icon {
+    width: 14px;
+    height: 14px;
+}
+
+.tasks-page h2{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.tasks-page p {
+    color: #78767D;
+    font-size: 14px;
+}
+
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.task {
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #D5D5D7;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task-left {
+    display: flex;
+}
+
+.task-left .task-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 10px;
+}
+
+.task-left .task-details span {
+    font-size: 14px;
+}
+
+.task-left .task-details .top-details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.task-left .task-details .top-details .task-name {
+    font-weight: 600;
+}
+
+.task-left .task-details .top-details .priority{
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 12px;
+    margin: 0px 10px;
+}
+
+.priority.priority-low {
+    background-color: #D8F7DD;
+    color: #319F43;
+}
+
+.priority.priority-high {
+    background-color: #F8D7D5;
+    color: #DC362E;
+}
+
+.priority.priority-medium {
+    background-color: #f3f3c1;
+    color: rgb(160, 160, 11);
+}
+
+.task input[type="checkbox"]:checked + .task-details .task-name {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.task input[type="checkbox"]:checked + .task-details span {
+    opacity: 0.5;
+}
+
+.task-left .task-details .top-details .is-due {
+    display: flex;
+    align-items: center;
+    padding: 1px 10px;
+    border: 1px solid;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.task-left .task-details .top-details .icon {
+    margin-right: 8px;
+}
+
+.task-left .task-details .bottom-details {
+    display: flex;
+    align-items: center;
+}
+
+.task-left .task-details .bottom-details .tags {
+    display: flex;
+    align-items: center;
+}
+
+.task-left .task-details .bottom-details .tags .tag-item {
+    margin: 0px 8px;
+    font-size: 12px;
+}
+
+.task-left .task-details .bottom-details .tags .icon {
+    margin-left: 10px;
+}
+
+.task-left .task-details .bottom-details .category {
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    border: 1px solid;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.notasks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.notasks img {
+    width: 400px;
+}
+
+.notasks h3 {
+    color: #7F67BE;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.notasks p {
+    color: #78767D;
+    font-size: 16px;
+}
+
+.hidden {
+display: none;
+}
