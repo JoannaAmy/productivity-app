@@ -5,14 +5,14 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  output   = "../lib/generated/prisma"
+    provider = "prisma-client-js"
+    output   = "../lib/generated/prisma"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
 }
 
 // npm db:migrate
@@ -28,13 +28,62 @@ datasource db {
 //     SUNDAY
 // }
 
+//  --- Before setting up database URls
+// 1. add this [?pgbouncer=true"] athe the end of your database URL
+
+// --- After mmaking changes to your schema.prisma file -- [stop development server first]
+// 1. npx prisma migrate dev --name edited_user 
+// 2. npx prisma generate
+
+// --- After setting up database URls
+// 1. npx prisma migrate dev --name init
+// 2. npx prisma generate
+// after this set up prisma client
+
+enum Priority {
+    LOW
+    MEDIUM
+    HIGH
+    URGENT
+}
+
+enum Category {
+    PERSONAL
+    WORK
+    HEALTH
+    EDUCATION
+    FINANCE
+    SHOPPING
+    OTHER
+}
+
 model Event {
-  id        String   @id @default(cuid())
-  title     String
-  duration  String
-  eventDateTime DateTime
-  notes     String?
-  guests    String[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    id            String   @id @default(cuid())
+    title         String
+    duration      String
+    eventDateTime DateTime
+    notes         String?
+    guests        String[]
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @updatedAt
+}
+
+model Task {
+    id          String    @id @default(cuid())
+    taskTitle   String
+    dueDate     DateTime
+    // dueDate     String
+    dueTime     String // Stored as HH:MM format
+    priority    String
+    category    String
+    tags        String[] // Array of hashtags like #urgent, #important, etc.
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    status      String   @default("pending") // 'pending' or 'completed'
+    clerkUserId String
+
+    @@index([clerkUserId], name: "clerkUserIdIndex") // Index for faster lookups by clerkUserId
+    @@index([dueDate])
+    @@index([priority])
+    @@index([category])
 }

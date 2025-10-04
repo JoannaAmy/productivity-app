@@ -3,6 +3,8 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import AppModals from "@/components/AppModals/AppModals";
 import { Metadata } from "next";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 // Product Sans is not available via next/font/google.
@@ -27,6 +29,7 @@ export default function RootLayout({
                     {children}
                 </ClerkProvider>
                 <AppModals />
+                <ToastContainer />
             </body>
         </html>
     );

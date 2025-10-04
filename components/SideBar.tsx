@@ -12,7 +12,7 @@ function SideBar() {
     const router = useRouter();
     const [showDropdown, setShowDropdown] = useState(false);
 
-    const dropdownRef = useRef<HTMLDivElement>(null); ''
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
 
 

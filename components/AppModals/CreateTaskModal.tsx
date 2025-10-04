@@ -3,21 +3,26 @@ import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useRouter } from 'next/navigation';
+import { TaskType } from '@/types';
+import { createTask, fetchTasks } from '@/lib/actions/tasks';
+import { toast } from 'react-toastify';
+import { now } from 'moment';
+import { tasksCategory } from '@/constants';
 
 interface CreateTaskProps {
     onCreateTask: (task: TaskType) => void;
 }
 
-interface TaskType {
-    id: number;
-    name: string;
-    dueDate: string;
-    dueTime: string;
-    priority: string;
-    category: string;
-    tags: string[];
-    status: 'pending' | 'completed';
-}
+// interface TaskType {
+//     id: number;
+//     name: string;
+//     dueDate: string;
+//     dueTime: string;
+//     priority: string;
+//     category: string;
+//     tags: string[];
+//     status: 'pending' | 'completed';
+// }
 
 const tagOptions = [
     '#urgent',
@@ -32,7 +37,7 @@ const tagOptions = [
 
 // Zod Schema
 const createTaskSchema = z.object({
-    eventTitle: z
+    taskTitle: z
         .string()
         .min(1, 'Event title is required')
         .max(200, 'Event title must be less than 200 characters'),
@@ -40,7 +45,16 @@ const createTaskSchema = z.object({
         error: 'Priority is required',
     }),
     category: z.string().min(1, 'Category is required'),
-    dueDate: z.string().min(1, 'Due date is required'),
+    dueDate: z
+        .date()
+        .refine((val) => {
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            val.setHours(0, 0, 0, 0);
+            return val >= today;
+        }, {
+            message: 'Due date cannot be in the past',
+        }),
     dueTime: z.string().min(1, 'Due time is required'),
     tags: z.array(z.string()),
 });
@@ -51,6 +65,26 @@ const CreateTask: React.FC<CreateTaskProps> = ({ }) => {
     const [showPriorityDropdown, setShowPriorityDropdown] = useState(false);
     const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
     const router = useRouter();
+    const [loading, setLoading] = useState(false);
+
+
+    // Get today's date
+    const today = new Date();
+
+    // Extract year, month, and day with leading zeros if necessary
+    const yyyy = today.getFullYear(); // full year, e.g., 2025
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // months are 0-indexed, add leading zero
+    const dd = String(today.getDate()).padStart(2, '0'); // day of month, add leading zero
+
+    // Format the minimum date string as "YYYY-MM-DD" for the input
+    const minDate = `${yyyy}-${mm}-${dd}`;
+
+    // --- TIME: format current time for the time input --- //
+    const hh = String(today.getHours()).padStart(2, '0');   // hours in 24h format
+    const min = String(today.getMinutes()).padStart(2, '0'); // minutes
+
+    const minTime = `${hh}:${min}`; // "HH:MM" for min attribute
+
 
     const {
         register,
@@ -62,11 +96,11 @@ const CreateTask: React.FC<CreateTaskProps> = ({ }) => {
     } = useForm<CreateTaskInput>({
         resolver: zodResolver(createTaskSchema),
         defaultValues: {
-            eventTitle: '',
-            priority: 'Medium',
+            taskTitle: '',
+            priority: 'Low',
             category: 'Personal',
-            dueDate: '',
-            dueTime: '',
+            dueDate: new Date(),
+            dueTime: minTime,
             tags: [],
         },
     });
@@ -81,25 +115,31 @@ const CreateTask: React.FC<CreateTaskProps> = ({ }) => {
         setValue('tags', newTags);
     };
 
+
     const handleClose = () => {
         router.push('/dashboard/tasks/all');
     };
 
-    const onSubmit = (data: CreateTaskInput) => {
-        const newTask: TaskType = {
-            id: Date.now(),
-            name: data.eventTitle,
-            dueDate: data.dueDate,
-            dueTime: data.dueTime,
-            priority: data.priority.toLowerCase(),
-            category: data.category,
-            tags: data.tags,
-            status: 'pending',
-        };
-        console.log(newTask);
-        // onCreateTask(newTask);
-        handleClose(); // check console
+    const onSubmit = async (data: CreateTaskInput) => {
+        try {
+            setLoading(true);
+            const response = await createTask({
+                ...data,
+                status: 'pending',
+            });
+            if (response) {
+                toast.success('Task created successfully!');
+                handleClose();
+            }
+        } catch (error) {
+            toast.error('Failed to create task');
+            console.error('Error creating task:', error);
+
+        } finally {
+            setLoading(false);
+        }
     };
+
 
     return (
         <div className="modal-overlay">
@@ -115,10 +155,10 @@ const CreateTask: React.FC<CreateTaskProps> = ({ }) => {
                         id="task-title"
                         type="text"
                         placeholder="Enter task title"
-                        {...register('eventTitle')}
+                        {...register('taskTitle')}
                     />
-                    {errors.eventTitle && (
-                        <p className="zod-error-text">{errors.eventTitle.message}</p>
+                    {errors.taskTitle && (
+                        <p className="zod-error-text">{errors.taskTitle.message}</p>
                     )}
 
                     <div className="date-time">
@@ -127,7 +167,8 @@ const CreateTask: React.FC<CreateTaskProps> = ({ }) => {
                             <input
                                 id="task-date"
                                 type="date"
-                                {...register('dueDate')}
+                                {...register('dueDate', { valueAsDate: true })}
+                                min={minDate} // prevents the user from selecting dates before today
                             />
                             {errors.dueDate && (
                                 <p className="zod-error-text">{errors.dueDate.message}</p>
@@ -139,6 +180,7 @@ const CreateTask: React.FC<CreateTaskProps> = ({ }) => {
                                 id="task-time"
                                 type="time"
                                 {...register('dueTime')}
+                                min={minTime} // prevents the user from selecting times before now
                             />
                             {errors.dueTime && (
                                 <p className="zod-error-text">{errors.dueTime.message}</p>
@@ -201,16 +243,7 @@ const CreateTask: React.FC<CreateTaskProps> = ({ }) => {
                                         </div>
                                         {showCategoryDropdown && (
                                             <div className="dropdown-options">
-                                                {[
-                                                    'Personal',
-                                                    'Work',
-                                                    'Health',
-                                                    'Finance',
-                                                    'Education',
-                                                    'Home',
-                                                    'Travel',
-                                                    'Shopping',
-                                                ].map((level) => (
+                                                {tasksCategory.map((level) => (
                                                     <div
                                                         key={level}
                                                         className="dropdown-option"
@@ -259,8 +292,16 @@ const CreateTask: React.FC<CreateTaskProps> = ({ }) => {
                     <button type="button" className="cancel" onClick={handleClose}>
                         Cancel
                     </button>
-                    <button type="submit" className="primary-btn">
-                        Create Task
+                    <button type="submit" className="primary-btn"
+                        disabled={loading}
+                        style={{
+                            opacity: loading ? 0.7 : 1,
+                            cursor: loading ? 'progress' : 'pointer'
+                        }}
+                    >
+                        {loading
+                            ? <span>Loading...</span>
+                            : 'Create Task'}
                     </button>
                 </div>
             </form>

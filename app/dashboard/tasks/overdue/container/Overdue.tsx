@@ -1,7 +1,5 @@
-import Tasks from "../../Tasks";
+import TasksPagesComponent from "@/components/TasksPagesComponent/TasksPagesComponent";
 
-export default function OverdueTasksPage({ tasks, setTasks }) {
-  return <Tasks 
-//   tasks={tasks} setTasks={setTasks}  
-  filter="all" />;
+export default async function OverdueTasksPage() {
+  return <TasksPagesComponent />
 }
