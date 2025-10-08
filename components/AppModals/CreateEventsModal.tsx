@@ -1,18 +1,18 @@
 "use client";
 
 import React, { useState, useEffect } from "react"; // <-- Import useEffect
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { eventSchema } from "@/schema";
 import { toast } from "react-toastify";
 import { eventType } from "@/types";
-import { createGoogleCalendarEvent } from "@/lib/actions/events";
+import { createGoogleCalendarEvent, updateGoogleCalendarEvent } from "@/lib/actions/events";
+import { useUser } from "@clerk/nextjs";
+import { useCalendarEvents } from "@/context/CalendarEventsContext"; 
 
-
-
-
+// Helper function to calculate end time
 const calculateEndTime = (startTime: string): string => {
     // Expected format for startTime: "HH:MM"
     if (!startTime) return "";
@@ -40,11 +40,13 @@ const calculateEndTime = (startTime: string): string => {
 
 const CreateMeeting = () => {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const modal = searchParams.get('modal');
     const [isLoading, setIsLoading] = useState(false);
     const [guestList, setGuestList] = useState<string[]>([]);
     const [guestEmail, setGuestEmail] = useState<string>("");
 
-    // --- Date/Time setup remains the same ---
+
     const today = new Date();
     const yyyy = today.getFullYear();
     const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -53,33 +55,44 @@ const CreateMeeting = () => {
     const hh = String(today.getHours()).padStart(2, '0');
     const min = String(today.getMinutes()).padStart(2, '0');
     const minTime = `${hh}:${min}`;
-    // ------------------------------------------
-    type EventFormData = z.infer<typeof eventSchema> & { guestList?: string[] }; const {
+
+
+    const isEditing = modal === 'edit_events';
+
+    const { user } = useUser(); // get user details
+    const { fetchEvents } = useCalendarEvents();
+
+
+
+
+    // React Hook Form setup
+    const {
         register,
         handleSubmit,
         formState: { errors },
-        watch,
-        setValue,
+        // setError,
+        watch,   // <-- IMPORTANT: Destructure watch
+        setValue, // <-- IMPORTANT: Destructure setValue
         setError
-    } = useForm<EventFormData>({
+    } = useForm<eventType>({
         resolver: zodResolver(eventSchema),
         defaultValues: {
             title: "",
             date: "",
+            // Set default end time to 1 hour after default start time
             startTime: minTime,
             endTime: calculateEndTime(minTime),
             notes: "",
-            guestList: [] // matches schema default
+            guestList: []
         },
     });
 
-    // 2. Watch the start time field for any changes 
+    // Watch the start time field for any changes 
     const startTime = watch('startTime');
 
-    // 3. Effect to update end time when start time changes
+    // Effect to update end time when start time changes
     useEffect(() => {
-        // Only run if startTime is actually set
-        if (startTime) {
+        if (startTime && !isEditing) {
             const newEndTime = calculateEndTime(startTime);
 
             // 4. Use setValue to programmatically update the endTime field
@@ -88,13 +101,34 @@ const CreateMeeting = () => {
                 shouldDirty: true
             });
         }
-    }, [startTime, setValue]); // Re-run effect when startTime changes or setValue is stable
+    }, [startTime, setValue, isEditing]); // Re-run effect when startTime changes or setValue is stable
 
-    // ... (rest of the component logic: handleClose, handleAddGuest, onSubmit)
+
+    useEffect(() => {
+        if (isEditing) {
+            const editData = sessionStorage.getItem("editData");
+            if (editData) {
+                const event: eventType = JSON.parse(editData);
+                const startTime = event.startTime.split('T')[1].substring(0, 5);
+                const endTime = event.endTime.split('T')[1].substring(0, 5);
+
+                // Populate the form fields with the event data
+                setValue("title", event.title);
+                setValue("id", event.id);
+                setValue("date", event.date);
+                setValue("startTime", startTime);
+                setValue("endTime", endTime);
+                setValue("notes", event.notes || "");
+                setGuestList(event.guestList || []);
+            }
+        }
+    }, [isEditing, setValue]);
 
     const handleClose = () => {
         router.push("/dashboard/calendar/events");
+        sessionStorage.removeItem("editData")
     };
+
 
     // Handler for adding guests
     const handleAddGuest = () => {
@@ -108,13 +142,19 @@ const CreateMeeting = () => {
                     message: `Email '${guestEmail}' is already added.`,
                 });
                 return;
+            } else if (user?.emailAddresses[0].emailAddress.includes(guestEmail.trim())) {
+                setError("guestList", {
+                    type: "manual",
+                    message: `Your cannot add yourself as a guest.`,
+                });
+                return;
             }
 
             setGuestList((prev) => [...prev, guestEmail]);
             setGuestEmail("");
             setError("guestList", {
                 type: "manual",
-                message: "", // CClear any previous errors
+                message: "", // Clear any previous errors
             });
         } else {
             // 2. Use setError to manually set the validation error
@@ -125,69 +165,58 @@ const CreateMeeting = () => {
         }
     };
 
-
-    // const onSubmit: SubmitHandler<eventType> = async (data) => {
-    //     setIsLoading(true);
-    //     // Combine form data with the separate guestList state
-    //     const eventData = { ...data, guestList };
-
-    //     try {
-    //         const response = await fetch('/api/calendar/create-event', {
-    //             method: 'POST',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify(eventData),
-    //         });
-
-    //         if (!response.ok) {
-    //             // Check for specific error message from the backend
-    //             const errorBody = await response.json();
-    //             throw new Error(errorBody.message || "Failed to create event in Google Calendar.");
-    //         }
-
-    //         console.log({ response })
-
-    //         const result = await response.json();
-    //         console.log("Success:", result);
-
-    //         // Show success message or redirect
-    //         toast.success(`Event created!`);
-    //         router.push("/dashboard/calendar/events");
-
-    //     } catch (error) {
-    //         console.error("Event creation failed:", error);
-    //         toast.error(`Error: ${error instanceof Error ? error.message : "An unknown error occurred."}`);
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // };
-
-    const onSubmit: SubmitHandler<EventFormData> = async (data) => {
+    const onSubmit: SubmitHandler<eventType> = async (data) => {
         setIsLoading(true);
+        // Combine form data with the separate guestList state
         const eventData = { ...data, guestList };
 
-        try {
-            // call srver action
-            const result = await createGoogleCalendarEvent(eventData);
+        if (isEditing) {
+            try {
+                const result = await updateGoogleCalendarEvent(eventData);
+
+                console.log("Success:", result);
+
+                toast.success(result.message);
+                await fetchEvents(); // Refresh events in context
+
+                // The Server Action revalidated the cache. Navigation triggers re-fetch.
+                router.push("/dashboard/calendar/events");
+
+            } catch (error) {
+                console.error("Event update failed:", error);
+                toast.error(`Error: ${error instanceof Error ? error.message : "An unknown error occurred."}`);
+            } finally {
+                setIsLoading(false);
+            }
 
 
-            console.log("Success:", result);
+        } else {
 
-            // Show success message and redirect
-            toast.success(result.message); // Use the message from the action
-            // router.refresh();
+            try {
+                const result = await createGoogleCalendarEvent(eventData);
 
-            router.push("/dashboard/calendar/events");
+                // The Server Action handles the revalidation and returns the success object
 
-        } catch (error) {
-            // Catch any error thrown by the Server Action
-            console.error("Event creation failed:", error);
-            toast.error(`Error: ${error instanceof Error ? error.message : "An unknown error occurred."}`);
-        } finally {
-            setIsLoading(false);
+                console.log("Success:", result);
+
+                // Show success message and redirect
+                toast.success(result.message); // Use the message from the action
+                await fetchEvents(); // Refresh events in context
+
+                // The data on the target page is now stale. Navigation triggers re-fetch.
+                router.push("/dashboard/calendar/events");
+
+            } catch (error) {
+                // Catch any error thrown by the Server Action
+                console.error("Event creation failed:", error);
+                toast.error(`Error: ${error instanceof Error ? error.message : "An unknown error occurred."}`);
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
+
+
 
 
     return (
@@ -195,7 +224,9 @@ const CreateMeeting = () => {
             {/* Wrap the form content in a <form> tag and use handleSubmit */}
             <form className="modal-content" onSubmit={handleSubmit(onSubmit)}>
                 <div className="modal-heading">
-                    <h2>Create Event</h2>
+                    <h2>
+                        {isEditing ? "Edit Event" : "Create New Event"}
+                    </h2>
                     <button type="button" onClick={handleClose}>
                         ╳
                     </button>
@@ -302,7 +333,10 @@ const CreateMeeting = () => {
                         className="primary-btn"
                         disabled={isLoading}
                     >
-                        {isLoading ? "Creating Event..." : "Create Event"}
+                        {isLoading ?
+                            isEditing ? "Updating..." : "Creating..."
+                            : isEditing ? "Update Event"
+                                : "Create Event"}
                     </button>
                 </div>
             </form>
@@ -311,3 +345,6 @@ const CreateMeeting = () => {
 };
 
 export default CreateMeeting;
+
+
+

@@ -231,3 +231,82 @@ export async function deleteCalendarEvent(eventId: string) {
     return { success: false, message: errorMessage };
   }
 }
+
+export async function updateGoogleCalendarEvent(eventData: eventType) {
+    const { userId } = await auth();
+
+    if (!userId) {
+        throw new Error("Unauthorized: User not signed in.");
+    }
+
+    // ⭐️ Key Check: Ensure eventId exists for an update operation
+    if (!eventData.id) {
+        throw new Error("Missing event ID for update operation.");
+    }
+
+    try {
+        // --- 1. CLERK/GOOGLE SETUP ---
+        const accessTokenResponse = await (await clerkClient()).users.getUserOauthAccessToken(userId, 'google');
+        const calendarToken = accessTokenResponse.data.find(
+            (token) => token?.scopes?.includes(Calendar_Scope)
+        );
+        const accessToken = calendarToken?.token;
+
+        if (!accessToken) {
+            throw new Error("Google Calendar access not granted.");
+        }
+
+        const authClient = new google.auth.OAuth2(
+            process.env.GOOGLE_CLIENT_ID,
+            process.env.GOOGLE_CLIENT_SECRET
+        );
+
+        authClient.setCredentials({ access_token: accessToken });
+        const calendar = google.calendar({ version: 'v3', auth: authClient });
+
+        // --- 2. EVENT BODY PREPARATION ---
+        const startDateTime = `${eventData.date}T${eventData.startTime}:00`;
+        const endDateTime = `${eventData.date}T${eventData.endTime}:00`;
+
+
+        const attendees = (eventData.guestList || []).map((email: string) => ({ email }));
+
+        // Construct the UPDATED Google Calendar Event object
+        const updatedEventBody = {
+            summary: eventData.title,
+            description: eventData.notes || '',
+            start: {
+                // Assuming startTime/endTime are ISO strings or combined from date/time fields
+                dateTime: startDateTime,
+                timeZone: 'UTC', // Keeping your original timezone logic
+            },
+            end: {
+                dateTime: endDateTime,
+                timeZone: 'UTC', // Keeping your original timezone logic
+            },
+            attendees: attendees,
+        };
+
+        // --- 3. API CALL: events.update ---
+        const response = await calendar.events.update({
+            calendarId: 'primary',
+            eventId: eventData.id, // ⭐️ Pass the ID of the event to update ⭐️
+            requestBody: updatedEventBody,
+            sendNotifications: true,
+        });
+
+        // 4. Invalidate the cache for the calendar page
+        revalidatePath('/dashboard/calendar/events');
+
+        return {
+            success: true,
+            message: "Event successfully updated in Google Calendar!",
+            eventId: response.data.id,
+            htmlLink: response.data.htmlLink,
+        };
+
+    } catch (error) {
+        console.error("Google Calendar API Update Error:", error);
+        throw new Error("Failed to update Google Calendar event.");
+    }
+}

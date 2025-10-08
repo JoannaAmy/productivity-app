@@ -222,7 +222,7 @@ const CreateReminder: React.FC<CreateReminderProps> = ({ }) => {
                             cursor: loading ? "progress" : "pointer",
                         }}
                     >
-                        {loading ? <span>Loading...</span> : "Create Task"}
+                        {loading ? <span>Loading...</span> : "Create Reminder"}
                     </button>
                 </div>
             </form>
