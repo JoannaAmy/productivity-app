@@ -1,10 +1,15 @@
+export const dynamic = "force-dynamic";
+
+// const EventListClient = dynamic(() => import('../components/EventList'), {
+//   ssr: false,
+//   loading: () => <div>Loading...</div>, // Optional loading fallback
+// });
+
 import { eventType } from '@/types';
-import '../../Calendar.css'; // Import styles for the whole page
+import '../../Calendar.css'; 
 import EventListClient from '../components/EventList';
 import { fetchGoogleCalendarEvents } from '@/lib/actions/events';
-
 // Force dynamic rendering on every request, as per your original code
-export const dynamic = 'force-dynamic'; 
 
 export default async function EventsPage() {
     let events: eventType[] = [];
@@ -12,7 +17,7 @@ export default async function EventsPage() {
     let initialLoading = true;
 
     try {
-        // ⭐️ SERVER-SIDE DATA FETCHING ⭐️
+        // SERVER-SIDE DATA FETCHING 
         events = await fetchGoogleCalendarEvents();
         initialLoading = false;
     } catch (e) {

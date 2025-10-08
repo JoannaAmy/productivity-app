@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Events from "./container/Events";
 
 const EventsPage = () => {

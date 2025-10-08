@@ -3,7 +3,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import AppModals from "@/components/AppModals/AppModals";
 import { Metadata } from "next";
-
+import { Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -27,9 +27,11 @@ export default function RootLayout({
             >
                 <ClerkProvider>
                     {children}
-                <AppModals />
-                <ToastContainer />
                 </ClerkProvider>
+                <Suspense fallback={null}>
+                    <AppModals />
+                </Suspense>
+                <ToastContainer />
             </body>
         </html>
     );
