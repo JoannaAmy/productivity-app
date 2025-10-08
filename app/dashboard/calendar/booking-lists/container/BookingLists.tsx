@@ -5,28 +5,28 @@ import '../../../calendar/Calendar.css';
 import Image from 'next/image';
 
 function BookingLists() {
-  const [showRight1, setShowRight1] = useState(false);
-  const [showRight2, setShowRight2] = useState(false);
-  const [showRight3, setShowRight3] = useState(false);
+  // const [showRight1, setShowRight1] = useState(false);
+  // const [showRight2, setShowRight2] = useState(false);
+  // const [showRight3, setShowRight3] = useState(false);
 
-  const [copied1, setCopied1] = useState(false);
-  const [copied2, setCopied2] = useState(false);
-  const [copied3, setCopied3] = useState(false);
+  // const [copied1, setCopied1] = useState(false);
+  // const [copied2, setCopied2] = useState(false);
+  // const [copied3, setCopied3] = useState(false);
 
-  const handleCopy = (link, setCopied) => {
-    navigator.clipboard.writeText(link);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  // const handleCopy = (link, setCopied) => {
+  //   navigator.clipboard.writeText(link);
+  //   setCopied(true);
+  //   setTimeout(() => setCopied(false), 2000);
+  // };
 
   return (
     <>
-      <div className="booking-lists">
+      {/* <div className="booking-lists">
         <div className="meeting-types">
           <h3>Meeting types and booking links</h3>
           <div className="types">
             {/* First type */}
-            <div className="type">
+            {/* <div className="type">
               <div className="left">
                 <label style={{
                   position: 'relative',
@@ -65,8 +65,8 @@ function BookingLists() {
                   </span>
                 </label>
                 <span>45 mins consultation</span>
-              </div>
-              {showRight1 && (
+              </div>*/}
+              {/* {showRight1 && ( 
                 <div className="right">
                   <span>https://todoapp.com/book/45min</span>
                   <button onClick={() => handleCopy('https://todoapp.com/book/45min', setCopied1)}>
@@ -74,10 +74,10 @@ function BookingLists() {
                   </button>
                 </div>
               )}
-            </div>
+            </div> */}
 
             {/* Second type */}
-            <div className="type">
+            {/* <div className="type">
               <div className="left">
                 <label style={{
                   position: 'relative',
@@ -125,10 +125,10 @@ function BookingLists() {
                   </button>
                 </div>
               )}
-            </div>
+            </div> */}
 
             {/* Third type */}
-            <div className="type">
+            {/* <div className="type">
               <div className="left">
                 <label style={{
                   position: 'relative',
@@ -221,8 +221,8 @@ function BookingLists() {
             </label>
             <span>Send automatic confirmation email to guests</span>
           </div>
-        </div>
-      </div>
+        </div> */}
+      {/* </div>  */}
     </>
   );
 }

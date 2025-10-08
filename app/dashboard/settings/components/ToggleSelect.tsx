@@ -1,7 +1,12 @@
 import React from 'react';
 import './ToggleSelect.css'; // Optional: style the switch here
 
-function ToggleSelect({ isActive, onToggle }) {
+interface ToggleSelectProps {
+  isActive: boolean;
+  onToggle: () => void;
+}
+
+function ToggleSelect({ isActive, onToggle }: ToggleSelectProps) {
   return (
     <label className="toggle-switch">
       <input

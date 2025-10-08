@@ -9,7 +9,8 @@ export const eventSchema = z.object({
     endTime: z.string().min(1, "Time is required."), // Time type from input[type="time"] is string
     guestList: z
         .array(z.email("Invalid email format in guest list."))
-        .optional()
-        .default([]), // Initialize as an empty array
+        // .optional()
+        // .default([])
+        , // Initialize as an empty array
     notes: z.string().optional(),
 });

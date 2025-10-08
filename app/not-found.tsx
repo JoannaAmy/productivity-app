@@ -1,9 +1,15 @@
 // app/not-found.tsx
-import { redirect } from "next/navigation";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function NotFound() {
-  // Redirect all 404s to homepage (or another page)
-  redirect("/dashboard/calendar/events");
+  const router = useRouter();
 
-  return null; // This never renders, because redirect throws
+  useEffect(() => {
+    router.replace("/dashboard/calendar/events");
+  }, [router]);
+
+  return null; // or return a small message while redirecting
 }

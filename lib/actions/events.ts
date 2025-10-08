@@ -224,7 +224,10 @@ export async function deleteCalendarEvent(eventId: string) {
     console.error("Google Calendar API Deletion Error:", error);
 
     const errorMessage =
-      (error as any).message || "Failed to delete Google Calendar event.";
+      error instanceof Error
+        ? error.message
+        : "Failed to delete Google Calendar event.";
+
     return { success: false, message: errorMessage };
   }
 }

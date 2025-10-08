@@ -11,14 +11,14 @@ import { usePathname } from 'next/navigation';
 import CalendarHeader from '@/components/CalendarHeader';
 
 function CalendarLayout() {
-  const pathname = usePathname();
-  const showHeader = pathname.includes('/calendar');
+  // const pathname = usePathname();
+  // const showHeader = pathname.includes('/calendar');
 
-  const [events, setEvents] = useState([]);
+  // const [events, setEvents] = useState([]);
 
-  const handleCreateEvent = (newEvent) => {
-    setEvents(prev => [...prev, newEvent]);
-  };
+  // const handleCreateEvent = (newEvent) => {
+  //   setEvents(prev => [...prev, newEvent]);
+  // };
 
   // const handleDeleteEvent = (indexToDelete) => {
   //   setEvents(prev => prev.filter((_, index) => index !== indexToDelete));

@@ -10,7 +10,9 @@ import { toast } from "react-toastify";
 import { eventType } from "@/types";
 import { createGoogleCalendarEvent } from "@/lib/actions/events";
 
-// Helper function to calculate end time
+
+
+
 const calculateEndTime = (startTime: string): string => {
     // Expected format for startTime: "HH:MM"
     if (!startTime) return "";
@@ -52,26 +54,22 @@ const CreateMeeting = () => {
     const min = String(today.getMinutes()).padStart(2, '0');
     const minTime = `${hh}:${min}`;
     // ------------------------------------------
-
-    // React Hook Form setup
-    const {
+    type EventFormData = z.infer<typeof eventSchema> & { guestList?: string[] }; const {
         register,
         handleSubmit,
         formState: { errors },
-        // setError,
-        watch,   // <-- IMPORTANT: Destructure watch
-        setValue, // <-- IMPORTANT: Destructure setValue
+        watch,
+        setValue,
         setError
-    } = useForm<eventType>({
+    } = useForm<EventFormData>({
         resolver: zodResolver(eventSchema),
         defaultValues: {
             title: "",
             date: "",
-            // Set default end time to 1 hour after default start time
             startTime: minTime,
             endTime: calculateEndTime(minTime),
             notes: "",
-            guestList: []
+            guestList: [] // matches schema default
         },
     });
 
@@ -165,23 +163,21 @@ const CreateMeeting = () => {
     //     }
     // };
 
-    const onSubmit: SubmitHandler<eventType> = async (data) => {
+    const onSubmit: SubmitHandler<EventFormData> = async (data) => {
         setIsLoading(true);
-        // Combine form data with the separate guestList state
         const eventData = { ...data, guestList };
 
         try {
             // call srver action
             const result = await createGoogleCalendarEvent(eventData);
 
-            // The Server Action handles the revalidation and returns the success object
 
             console.log("Success:", result);
 
             // Show success message and redirect
             toast.success(result.message); // Use the message from the action
             // router.refresh();
-            
+
             router.push("/dashboard/calendar/events");
 
         } catch (error) {
@@ -192,10 +188,6 @@ const CreateMeeting = () => {
             setIsLoading(false);
         }
     };
-
-
-
-
 
 
     return (

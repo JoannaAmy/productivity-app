@@ -10,7 +10,7 @@ import { now } from "moment";
 import { tasksCategory } from "@/constants";
 
 interface CreateTaskProps {
-  onCreateTask: (task: TaskType) => void;
+  onCreateTask?: (task: TaskType) => void;
 }
 
 // interface TaskType {

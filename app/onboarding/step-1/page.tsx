@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
@@ -54,7 +55,7 @@ const WelcomePg: React.FC = () => {
                         <div className="progress-container">
                             <div className="step-1 active"></div>
                             <div className="step-2"></div>
-                            <div className="step-3"></div>
+                            {/* <div className="step-3"></div> */}
                         </div>
                     </div>
                 </div>

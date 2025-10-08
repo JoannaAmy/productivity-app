@@ -9,7 +9,7 @@ import { createReminders } from '@/lib/actions/reminder'
 import { toast } from "react-toastify";
 
 interface CreateReminderProps {
-    onCreateReminder: (reminder: ReminderType) => void;
+    onCreateReminder?: (reminder: ReminderType) => void;
     // handleClose: () => void;
 }
 

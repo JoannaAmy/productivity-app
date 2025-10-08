@@ -15,6 +15,8 @@ function Settings() {
 
     const [newName, setNewName] = useState(userName);
     const [newEmail, setNewEmail] = useState(userEmail);
+     const [emailNotifications, setEmailNotifications] = useState(false);
+    const [pushNotifications, setPushNotifications] = useState(false);
 
 
     const { user } = useUser();
@@ -69,7 +71,10 @@ function Settings() {
                             <p>Get emails to find out what’s going on when you’re not online.</p>
                         </div>
                         <div className="toggle-setting">
-                            <ToggleSelect />
+                            <ToggleSelect 
+                             isActive={emailNotifications}
+                                onToggle={() => setEmailNotifications(!emailNotifications)}
+                            />
                         </div>
                     </div>
                     <div className="notif-setting">
@@ -78,12 +83,14 @@ function Settings() {
                             <p>Get push notification on desktop or mobile device.</p>
                         </div>
                         <div className="toggle-setting">
-                            <ToggleSelect />
+                            <ToggleSelect
+                             isActive={pushNotifications}
+                                onToggle={() => setPushNotifications(!pushNotifications)} />
                         </div>
                     </div>
                     <hr />
                     <div className="close-btns">
-                        <button className="sec-btn" onClick={() => router('/calendar/events')}>Cancel</button>
+                        <button className="sec-btn" onClick={() => router.push('/calendar/events')}>Cancel</button>
                         <button className='primary-btn'
                             onClick={() => {
                                 setUserName(newName);

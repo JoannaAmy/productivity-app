@@ -41,4 +41,11 @@ export interface TaskType {
 //   clerkUserId?: string;
 // }
 
-export type eventType = z.infer<typeof eventSchema> & {htmlLink?: string, organizer?: string, id?: string};
+type EventSchemaType = z.infer<typeof eventSchema>;
+
+// Extended type for API responses
+export type eventType = EventSchemaType & {
+  htmlLink?: string;
+  organizer?: string;
+  id?: string;
+};
