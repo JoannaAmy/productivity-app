@@ -1,5 +1,5 @@
-import Reminders from "../../Reminders"
+import ReminderPagesComponent from "@/components/RemindersPagesComponent/RemindersPageComponent"
 
 export default function InactiveRemindersPage(){
-    return <Reminders />
+    return <ReminderPagesComponent />
 }

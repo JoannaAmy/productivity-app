@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,114 +17,120 @@
   border-radius: 8px;
   width: 400px;
   max-width: 90%;
-  min-height: 700px;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  /* min-height: 700px; */
+  min-height: unset;
+
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
 }
 
 .modal-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 16px;
 }
 
 .modal-heading h2 {
-    font-weight: 500;
-    display: flex;
-    align-items: center;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
 }
 
-.modal-heading .icon{
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+.modal-heading .icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .form label {
-    font-weight: 700;
-    font-weight: 14px;
-    margin-top: 10px;
-    width: 100%;
+  font-weight: 700;
+  font-weight: 14px;
+  margin-top: 10px;
+  width: 100%;
 }
 
-.form input, textarea, .dropdown-header  {
-    border: none;
-    outline: none;
-    background-color: #F2F0F9;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 6px;
+.form input,
+textarea,
+.dropdown-header {
+  border: none;
+  outline: none;
+  background-color: #f2f0f9;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
 }
 
 .date-time {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .date-time > div {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 49%;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 49%;
 }
 
 .date-time .date {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 .confirmation {
-    display: flex;
-    border-radius: 10px;
-    padding: 7px;
-    border: 1px solid #7F67BE;
-    background-color: #ECE8F5;
-    color: #7F67BE;
+  display: flex;
+  border-radius: 10px;
+  padding: 7px;
+  border: 1px solid #7f67be;
+  background-color: #ece8f5;
+  color: #7f67be;
 }
 
 .confirmation .icon {
-    width: 20px;
-    height: 20px;
-    margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 .confirmation h4 {
-    font-size: 14px;
-    font-weight: 700;
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .confirmation p {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .action-btns {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* margin-top: auto; */
+  margin-top: 50px;
 }
 
 .action-btns button {
-    padding: 8px 10px;
-    font-size: 14px;
-    border-radius: 10px;
-    width: 48%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  width: 48%;
 }
 
 .action-btns .cancel {
-    border: 1px solid #000;
+  border: 1px solid #000;
 }
 
 .action-btns .primary-btn {
-    background-color: #7F67BE;
-    color: #fff;
+  background-color: #7f67be;
+  color: #fff;
 }
 
 .custom-dropdown {
@@ -152,7 +158,7 @@
   background: white;
   border: 1px solid #ccc;
   border-radius: 6px;
-  box-shadow: 0 4px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 3px rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
 
@@ -169,19 +175,19 @@
 }
 
 .dropdown-options .icon {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 p.guests {
-    font-size: 12px;
-    padding: 3px 6px;
-    background-color: #F2F0F9;
-    color: #7F67BE;
-    display: inline-flex;
-    width: max-content;
-    border-radius: 6px;
-    margin-right: 3px;
-    cursor: pointer;
+  font-size: 12px;
+  padding: 3px 6px;
+  background-color: #f2f0f9;
+  color: #7f67be;
+  display: inline-flex;
+  width: max-content;
+  border-radius: 6px;
+  margin-right: 3px;
+  cursor: pointer;
 }
 
 .guest-input-group {
@@ -196,7 +202,7 @@ p.guests {
 
 .guest-input-group button {
   padding: 10px;
-  background-color: #7F67BE;
+  background-color: #7f67be;
   color: white;
   border: none;
   border-radius: 4px;

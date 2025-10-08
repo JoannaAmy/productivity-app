@@ -15,30 +15,59 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// npm db:migrate
+//npm db:migrate
 //npm db:generate
 
-// enum Day {
-//     MONDAY
-//     TUESDAY
-//     WEDNESDAY
-//     THURSDAY
-//     FRIDAY
-//     SATURDAY
-//     SUNDAY
-// }
-
 model Event {
-  id        String   @id @default(cuid())
-  title     String
-  duration  String
-  eventDateTime DateTime
-  notes     String?
-  guests    String[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(cuid())
+  title       String
+  date        String
+  time        String
+  notes       String?
+  guestEmails String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  clerkUserId String
+
+  @@index([clerkUserId])
 }
 
 // model Task {
 // id  String  @id @default
 // }
+
+model Reminder {
+  id        String   @id @default(cuid())
+  title     String
+  notes     String? // optional
+  dueDate   DateTime // date part
+  dueTime   String // time part
+  repeat    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  active    Boolean  @default(true)
+
+  clerkUserId String
+
+  @@index([repeat])
+  @@index([clerkUserId], name: "clerkUserIdIndexReminder")
+}
+
+model Task {
+  id          String   @id @default(cuid())
+  taskTitle   String
+  dueDate     DateTime
+  dueTime     String // Stored as HH:MM format
+  priority    String
+  category    String
+  tags        String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  status      String   @default("pending")
+  clerkUserId String
+
+  @@index([clerkUserId], name: "clerkUserIdIndexTask")
+  @@index([dueDate])
+  @@index([priority])
+  @@index([category])
+}

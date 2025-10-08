@@ -1,7 +1,5 @@
-import Tasks from "../../Tasks";
+import TasksPagesComponent from "@/components/TasksPagesComponent/TasksPagesComponent";
 
-export default function CompletedTasksPage({ tasks, setTasks }) {
-  return <Tasks  
-//   tasks={tasks} setTasks={setTasks}  
-  filter="completed" />;
+export default function CompletedTasksPage() {
+  return <TasksPagesComponent />;
 }

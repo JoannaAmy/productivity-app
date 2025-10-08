@@ -72,6 +72,10 @@
     background-color:#F2F1F3;
     color: #78767D;
 }
+.reminder-desc span img {
+    width: 20px;
+    height: 20px;
+}
 
 .reminder-detail {
     margin: 6px 0;
@@ -91,6 +95,10 @@
     margin-right: 10px;
 }
 
+.reminder-tags span img {
+    width: 20px;
+    height: 20px;
+}
 .reminder-right {
     display: flex;
     align-items: center;
@@ -98,8 +106,9 @@
 
 .reminder-right .icon {
     margin-left: 20px;
-    width: 20px;
-    height: 20px;
+    width: 20px  !important;
+    height: 20px  !important;
+   
 }
 
 .no-reminders {

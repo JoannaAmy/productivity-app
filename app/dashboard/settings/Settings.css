@@ -102,3 +102,8 @@ hr {
     padding: .3125rem .625rem;
     margin-right: .625rem;
 }
+.user {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}

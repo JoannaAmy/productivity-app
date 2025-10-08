@@ -12,7 +12,7 @@ function SideBar() {
     const router = useRouter();
     const [showDropdown, setShowDropdown] = useState(false);
 
-    const dropdownRef = useRef<HTMLDivElement>(null); ''
+    const dropdownRef = useRef<HTMLDivElement>(null); 
 
 
 
@@ -62,9 +62,9 @@ function SideBar() {
                     <button className="create-btn" onClick={handleCreateClick}>+ Create</button>
                     {showDropdown && (
                         <div className="create-dropdown-sidebar">
+                            <button onClick={() => handleOptionClick('create-events')}>Add Event</button>
                             <button onClick={() => handleOptionClick('create-task')}>Add Task</button>
                             <button onClick={() => handleOptionClick('create-reminder')}>Add Reminder</button>
-                            <button onClick={() => handleOptionClick('create-events')}>Add Event</button>
                         </div>
                     )}
                 </div>

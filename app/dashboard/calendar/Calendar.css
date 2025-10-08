@@ -128,6 +128,7 @@ h5 {
 
 .actions {
     display: flex;
+    /* width: 350px; */
 }
 
 .copy-link {
